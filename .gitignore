@@ -1,0 +1,11 @@
+# Generated node modules
+node_modules
+
+# Environment Variables
+.env
+
+# Visual Studio Code Settings
+.vscode
+
+# Mac OS Specific files
+.DS_Store
