@@ -1,8 +1,8 @@
 import { ConnectionOptions } from 'typeorm'
 
-import { config } from '../config'
+import { config } from '.'
 
-const ormConfig: ConnectionOptions = {
+const configORM: ConnectionOptions = {
   type: 'postgres',
   host: config.pg_host,
   port: config.pg_port,
@@ -20,4 +20,4 @@ const ormConfig: ConnectionOptions = {
   },
 }
 
-export default ormConfig
+export default configORM

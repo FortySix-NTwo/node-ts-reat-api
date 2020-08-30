@@ -13,3 +13,5 @@ export type Route = {
 }
 
 export type Wrapper = (router: Router) => void
+
+export type ErrorWithCode = Error & { code?: string }

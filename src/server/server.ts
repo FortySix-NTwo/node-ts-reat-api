@@ -1,11 +1,9 @@
 import express, { Application } from 'express'
 import 'reflect-metadata'
-import { createConnection } from 'typeorm'
 
-import { ormConfig } from '../entity'
 import { config } from '../config'
 
-export default class Server {
+class Server {
   constructor() {
     this.setupServer()
   }
@@ -20,7 +18,6 @@ export default class Server {
 
   async start() {
     try {
-      await createConnection(ormConfig)
       console.info('Database Running')
       this.setupServer().server.listen(
         this.setupServer().port,
@@ -44,3 +41,5 @@ export default class Server {
     process.exit(1)
   }
 }
+
+export default Server

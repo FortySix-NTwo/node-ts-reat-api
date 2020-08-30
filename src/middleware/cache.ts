@@ -2,7 +2,7 @@ import { Response, NextFunction } from 'express'
 
 import { redisClient } from '../config'
 
-const getFromCache = async (key: string, res: Response, next: NextFunction) => {
+const Cache = async (key: string, res: Response, next: NextFunction) => {
   let data = await redisClient.get(key)
 
   if (data) {
@@ -12,4 +12,4 @@ const getFromCache = async (key: string, res: Response, next: NextFunction) => {
   }
 }
 
-export default getFromCache
+export default Cache

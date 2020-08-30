@@ -14,8 +14,6 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 const express_1 = __importDefault(require("express"));
 require("reflect-metadata");
-const typeorm_1 = require("typeorm");
-const entity_1 = require("../entity");
 const config_1 = require("../config");
 class Server {
     constructor() {
@@ -31,7 +29,6 @@ class Server {
     start() {
         return __awaiter(this, void 0, void 0, function* () {
             try {
-                yield typeorm_1.createConnection(entity_1.ormConfig);
                 console.info('Database Running');
                 this.setupServer().server.listen(this.setupServer().port, this.setupServer().host, () => {
                     console.info(`Server running`);

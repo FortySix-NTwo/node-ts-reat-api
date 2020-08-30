@@ -1,12 +1,11 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.serverError = exports.clientError = exports.notFoundError = void 0;
-const httpError_1 = require("./httpError");
-exports.notFoundError = () => {
-    throw new httpError_1.HTTP404Error('Method not found.');
+const index_1 = require("./index");
+const notFoundError = () => {
+    throw new index_1.HTTP404Error('Method not found.');
 };
-exports.clientError = (err, res, next) => {
-    if (err instanceof httpError_1.HTTPClientError) {
+const clientError = (err, res, next) => {
+    if (err instanceof index_1.HTTPClientError) {
         console.warn(err);
         res.status(err.statusCode).send(err.message);
     }
@@ -14,7 +13,7 @@ exports.clientError = (err, res, next) => {
         next(err);
     }
 };
-exports.serverError = (err, res, _next) => {
+const serverError = (err, res, _next) => {
     console.error(err);
     if (process.env.NODE_ENV === 'production') {
         res.status(500).send('Internal Server Error');
@@ -22,5 +21,10 @@ exports.serverError = (err, res, _next) => {
     else {
         res.status(500).send(err.stack);
     }
+};
+exports.default = {
+    notFoundError,
+    clientError,
+    serverError,
 };
 //# sourceMappingURL=errorHandler.js.map

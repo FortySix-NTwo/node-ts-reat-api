@@ -1,0 +1,1 @@
+{"version":3,"file":"routesWrapper.js","sourceRoot":"","sources":["../../src/utils/routesWrapper.ts"],"names":[],"mappings":";;AAIA,MAAM,cAAc,GAAG,CAAC,MAAe,EAAE,MAAc,EAAE,EAAE;IACzD,KAAK,MAAM,KAAK,IAAI,MAAM,EAAE;QAC1B,MAAM,EAAE,MAAM,EAAE,IAAI,EAAE,OAAO,EAAE,GAAG,KAAK,CACtC;QAAC,MAAc,CAAC,MAAM,CAAC,CAAC,IAAI,EAAE,OAAO,CAAC,CAAA;KACxC;AACH,CAAC,CAAA;AAED,kBAAe,cAAc,CAAA"}

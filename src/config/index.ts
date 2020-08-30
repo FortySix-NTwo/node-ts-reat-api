@@ -1,2 +1,5 @@
 export { default as config } from './config'
-export { redisClient, connectCache } from './cache'
+export { default as configCache } from './configCache'
+export { default as configORM } from './configORM'
+export { default as configLogger } from './configLogger'
+export { redisClient } from './configCache'

@@ -12,6 +12,7 @@ switch (process.env.NODE_ENV) {
   default:
     path = `${__dirname}/../../.env.development`
 }
+
 dotenv.config({ path })
 
 export default {
@@ -19,9 +20,11 @@ export default {
   port: Number(process.env.PORT),
   host: String(process.env.HOST),
   pg_port: Number(process.env.POSTGRES_PORT),
-  pg_host: process.env.POSTGRES_HOST,
-  pg_db: process.env.POSTGRES_DB,
-  pg_user: process.env.POSTGRES_USER,
-  pg_pass: process.env.POSTGRES_PASSWORD,
-  redis_url: process.env.REDIS_URL,
+  pg_host: String(process.env.POSTGRES_HOST),
+  pg_db: String(process.env.POSTGRES_DB),
+  pg_user: String(process.env.POSTGRES_USER),
+  pg_pass: String(process.env.POSTGRES_PASSWORD),
+  redis_url: String(process.env.REDIS_URL),
+  jwt: String(process.env.JWT),
+  sentry_dsn: String(process.env.SENTRY_DSN),
 }
