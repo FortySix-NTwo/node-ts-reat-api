@@ -11,3 +11,6 @@ node_modules
 
 # Mac OS Specific files
 .DS_Store
+
+# TypeORM log files
+ormlogs.log

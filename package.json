@@ -19,7 +19,11 @@
     "PostgreSQL",
     "PGADMIN4",
     "TypeScript",
-    "TypeORM"
+    "TypeORM",
+    "SOLID",
+    "TDD",
+    "Socket.io",
+    "Redis"
   ],
   "author": "Jonathan Farber",
   "license": "MIT",
