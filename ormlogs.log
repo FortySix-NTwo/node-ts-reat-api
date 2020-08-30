@@ -1,0 +1,22 @@
+[2020-08-30T10:42:49.105Z][QUERY]: START TRANSACTION
+[2020-08-30T10:42:49.108Z][QUERY]: SELECT * FROM "information_schema"."tables" WHERE "table_schema" = current_schema() AND "table_name" = 'typeorm_metadata'
+[2020-08-30T10:42:49.115Z][QUERY]: COMMIT
+[2020-08-30T10:42:49.117Z][QUERY]: SELECT * FROM "information_schema"."tables" WHERE "table_schema" = current_schema() AND "table_name" = 'migrations'
+[2020-08-30T10:42:49.120Z][QUERY]: CREATE TABLE "migrations" ("id" SERIAL NOT NULL, "timestamp" bigint NOT NULL, "name" character varying NOT NULL, CONSTRAINT "PK_8c82d7f526340ab734260ea46be" PRIMARY KEY ("id"))
+[2020-08-30T10:42:49.133Z][QUERY]: SELECT * FROM "migrations" "migrations" ORDER BY "id" DESC
+[2020-08-30T10:54:04.046Z][QUERY]: START TRANSACTION
+[2020-08-30T10:54:04.049Z][QUERY]: SELECT * FROM "information_schema"."tables" WHERE "table_schema" = current_schema() AND "table_name" = 'typeorm_metadata'
+[2020-08-30T10:54:04.055Z][QUERY]: COMMIT
+[2020-08-30T10:54:04.057Z][QUERY]: SELECT * FROM "information_schema"."tables" WHERE "table_schema" = current_schema() AND "table_name" = 'migrations'
+[2020-08-30T10:54:04.060Z][QUERY]: CREATE TABLE "migrations" ("id" SERIAL NOT NULL, "timestamp" bigint NOT NULL, "name" character varying NOT NULL, CONSTRAINT "PK_8c82d7f526340ab734260ea46be" PRIMARY KEY ("id"))
+[2020-08-30T10:54:04.066Z][QUERY]: SELECT * FROM "migrations" "migrations" ORDER BY "id" DESC
+[2020-08-30T12:44:45.403Z][QUERY]: START TRANSACTION
+[2020-08-30T12:44:45.406Z][QUERY]: SELECT * FROM "information_schema"."tables" WHERE "table_schema" = current_schema() AND "table_name" = 'typeorm_metadata'
+[2020-08-30T12:44:45.411Z][QUERY]: COMMIT
+[2020-08-30T12:44:45.413Z][QUERY]: SELECT * FROM "information_schema"."tables" WHERE "table_schema" = current_schema() AND "table_name" = 'migrations'
+[2020-08-30T12:44:45.416Z][QUERY]: SELECT * FROM "migrations" "migrations" ORDER BY "id" DESC
+[2020-08-30T12:46:58.248Z][QUERY]: START TRANSACTION
+[2020-08-30T12:46:58.251Z][QUERY]: SELECT * FROM "information_schema"."tables" WHERE "table_schema" = current_schema() AND "table_name" = 'typeorm_metadata'
+[2020-08-30T12:46:58.256Z][QUERY]: COMMIT
+[2020-08-30T12:46:58.258Z][QUERY]: SELECT * FROM "information_schema"."tables" WHERE "table_schema" = current_schema() AND "table_name" = 'migrations'
+[2020-08-30T12:46:58.261Z][QUERY]: SELECT * FROM "migrations" "migrations" ORDER BY "id" DESC

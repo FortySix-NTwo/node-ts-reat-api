@@ -1,7 +1,8 @@
-import { ConnectionOptions } from 'typeorm';
-import { config } from 'config';
+import { ConnectionOptions } from 'typeorm'
 
-export default {
+import { config } from '../config'
+
+const ormConfig: ConnectionOptions = {
   type: 'postgres',
   host: config.pg_host,
   port: config.pg_port,
@@ -10,10 +11,13 @@ export default {
   database: config.pg_db,
   entities: [__dirname + 'entity/model/**/*{.ts,.js}'],
   migrationsRun: true,
+  synchronize: true,
   logging: true,
   logger: 'file',
   migrations: [__dirname + 'entity/migrations/**/*{.ts,.js}'],
   cli: {
     migrationsDir: 'src/entity/migrations',
   },
-}as Parameters<typeof ConnectionOptions>[0]
+}
+
+export default ormConfig
