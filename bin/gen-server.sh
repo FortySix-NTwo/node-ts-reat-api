@@ -109,21 +109,21 @@ CMD yarn start" >> Dockerfile
 echo 'version: "3"
 services:
 
-  server:
-    build:
-      context: .
-      dockerfile: Dockerfile
-    container_name: server
-    depends_on:
-      - pg_db
-    restart: always
-    working_dir: /opt/app
-    volumes:
-      - ./:/opt/app
-    ports:
-      - 0.0.0.0:8000:8000
-    networks:
-    - server_network
+#  server:
+#    build:
+#      context: .
+#      dockerfile: Dockerfile
+#    container_name: server
+#    depends_on:
+#      - pg_db
+#    restart: always
+#    working_dir: /opt/app
+#    volumes:
+#      - ./:/opt/app
+#    ports:
+#      - 0.0.0.0:8000:8000
+#    networks:
+#    - server_network
 
   pg_db:
     image: postgres:12

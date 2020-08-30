@@ -2,10 +2,13 @@
   "name": "node-ios-backend",
   "version": "1.0.0",
   "description": "iOS Back-End Server",
+  "main": "dist/index",
   "scripts": {
     "watch": "tsc -w",
     "dev": "nodemon ./dist/index.ts",
     "start": "node ./dist/index.js",
+    "test": "jest --coverage",
+    "build": "tsc",
     "typeorm": "ts-node -r tsconfig-paths/register ./node_modules/typeorm/cli.js --config src/entity/ormconfig.ts",
     "typeorm:migrate": "yarn typeorm migration:generate -- -n",
     "typeorm:run": "yarn typeorm migration:run",
@@ -27,6 +30,10 @@
   ],
   "author": "Jonathan Farber",
   "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/FortySix-NTwo/node-ts-reat-api"
+  },
   "dependencies": {
     "bcryptjs": "^2.4.3",
     "cors": "^2.8.5",
