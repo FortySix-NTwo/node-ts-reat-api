@@ -17,18 +17,25 @@ require("reflect-metadata");
 const typeorm_1 = require("typeorm");
 const entity_1 = require("../entity");
 const config_1 = require("../config");
-const server = express_1.default();
-const environment = config_1.config.environment;
-const port = config_1.config.port;
-const host = config_1.config.host;
 class Server {
+    constructor() {
+        this.setupServer = () => {
+            const server = express_1.default();
+            const environment = config_1.config.environment;
+            const port = config_1.config.port;
+            const host = config_1.config.host;
+            return { server, environment, port, host };
+        };
+        this.setupServer();
+    }
     start() {
         return __awaiter(this, void 0, void 0, function* () {
             try {
                 yield typeorm_1.createConnection(entity_1.ormConfig);
-                server.listen(port, host, () => {
-                    console.info(`server listening for requests at http://${host}:${port}`);
-                    return server;
+                console.info('Database Running');
+                this.setupServer().server.listen(this.setupServer().port, this.setupServer().host, () => {
+                    console.info(`Server running`);
+                    return this.setupServer().server;
                 });
             }
             catch (error) {
@@ -38,10 +45,12 @@ class Server {
     }
     stop(error) {
         return __awaiter(this, void 0, void 0, function* () {
-            if (environment === 'development') {
-                console.error(error.stack);
+            if (this.setupServer().environment === 'development') {
+                console.error(`Internal Server Error ${error.stack}`);
+                process.exit(1);
             }
-            console.error(`Unable to Stop Server ${error}`);
+            console.error(`Internal Server Error ${error}`);
+            process.exit(1);
         });
     }
 }

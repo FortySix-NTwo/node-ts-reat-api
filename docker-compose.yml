@@ -19,20 +19,32 @@ services:
   pg_db:
     image: postgres:12
     env_file:
-      - ./.env.development
+      - ./.env.docker
     ports:
       - 0.0.0.0:8001:5432
     volumes:
       - db-data:/var/lib/postgresql/data
+    expose:
+      - 8001/tcp
     networks:
       - server_network
 
   pg_admin:
     image: dpage/pgadmin4
     env_file:
-      - ./.env.development
+      - ./.env.docker
     ports:
       - 0.0.0.0:8002:80
+    networks:
+      - server_network
+
+  redis_cache:
+    image: redis:latest
+    volumes:
+      - redis-data:/data
+    ports:
+      - 0.0.0.0:8003:6379
+    command: redis-server
     networks:
       - server_network
 
@@ -42,3 +54,4 @@ networks:
 
 volumes:
   db-data:
+  redis-data:

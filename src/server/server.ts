@@ -5,29 +5,42 @@ import { createConnection } from 'typeorm'
 import { ormConfig } from '../entity'
 import { config } from '../config'
 
-const server: Application = express()
-
-const environment = config.environment
-const port = config.port
-const host = config.host
-
 export default class Server {
+  constructor() {
+    this.setupServer()
+  }
+
+  private setupServer = () => {
+    const server: Application = express()
+    const environment = config.environment
+    const port = config.port
+    const host = config.host
+    return { server, environment, port, host }
+  }
+
   async start() {
     try {
       await createConnection(ormConfig)
-      server.listen(port, host, () => {
-        console.info(`server listening for requests at http://${host}:${port}`)
-        return server
-      })
+      console.info('Database Running')
+      this.setupServer().server.listen(
+        this.setupServer().port,
+        this.setupServer().host,
+        () => {
+          console.info(`Server running`)
+          return this.setupServer().server
+        }
+      )
     } catch (error) {
       this.stop(error)
     }
   }
 
   async stop(error: Error) {
-    if (environment === 'development') {
-      console.error(error.stack)
+    if (this.setupServer().environment === 'development') {
+      console.error(`Internal Server Error ${error.stack}`)
+      process.exit(1)
     }
-    console.error(`Unable to Stop Server ${error}`)
+    console.error(`Internal Server Error ${error}`)
+    process.exit(1)
   }
 }

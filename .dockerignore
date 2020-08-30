@@ -5,7 +5,6 @@ node_modules
 .env.development
 .env.test
 .env.production
-.env.docker
 
 # Visual Studio Code Settings
 .vscode

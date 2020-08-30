@@ -1,182 +1,170 @@
-[2020-08-30T10:42:49.105Z][QUERY]: START TRANSACTION
-[2020-08-30T10:42:49.108Z][QUERY]: SELECT * FROM "information_schema"."tables" WHERE "table_schema" = current_schema() AND "table_name" = 'typeorm_metadata'
-[2020-08-30T10:42:49.115Z][QUERY]: COMMIT
-[2020-08-30T10:42:49.117Z][QUERY]: SELECT * FROM "information_schema"."tables" WHERE "table_schema" = current_schema() AND "table_name" = 'migrations'
-[2020-08-30T10:42:49.120Z][QUERY]: CREATE TABLE "migrations" ("id" SERIAL NOT NULL, "timestamp" bigint NOT NULL, "name" character varying NOT NULL, CONSTRAINT "PK_8c82d7f526340ab734260ea46be" PRIMARY KEY ("id"))
-[2020-08-30T10:42:49.133Z][QUERY]: SELECT * FROM "migrations" "migrations" ORDER BY "id" DESC
-[2020-08-30T10:54:04.046Z][QUERY]: START TRANSACTION
-[2020-08-30T10:54:04.049Z][QUERY]: SELECT * FROM "information_schema"."tables" WHERE "table_schema" = current_schema() AND "table_name" = 'typeorm_metadata'
-[2020-08-30T10:54:04.055Z][QUERY]: COMMIT
-[2020-08-30T10:54:04.057Z][QUERY]: SELECT * FROM "information_schema"."tables" WHERE "table_schema" = current_schema() AND "table_name" = 'migrations'
-[2020-08-30T10:54:04.060Z][QUERY]: CREATE TABLE "migrations" ("id" SERIAL NOT NULL, "timestamp" bigint NOT NULL, "name" character varying NOT NULL, CONSTRAINT "PK_8c82d7f526340ab734260ea46be" PRIMARY KEY ("id"))
-[2020-08-30T10:54:04.066Z][QUERY]: SELECT * FROM "migrations" "migrations" ORDER BY "id" DESC
-[2020-08-30T12:44:45.403Z][QUERY]: START TRANSACTION
-[2020-08-30T12:44:45.406Z][QUERY]: SELECT * FROM "information_schema"."tables" WHERE "table_schema" = current_schema() AND "table_name" = 'typeorm_metadata'
-[2020-08-30T12:44:45.411Z][QUERY]: COMMIT
-[2020-08-30T12:44:45.413Z][QUERY]: SELECT * FROM "information_schema"."tables" WHERE "table_schema" = current_schema() AND "table_name" = 'migrations'
-[2020-08-30T12:44:45.416Z][QUERY]: SELECT * FROM "migrations" "migrations" ORDER BY "id" DESC
-[2020-08-30T12:46:58.248Z][QUERY]: START TRANSACTION
-[2020-08-30T12:46:58.251Z][QUERY]: SELECT * FROM "information_schema"."tables" WHERE "table_schema" = current_schema() AND "table_name" = 'typeorm_metadata'
-[2020-08-30T12:46:58.256Z][QUERY]: COMMIT
-[2020-08-30T12:46:58.258Z][QUERY]: SELECT * FROM "information_schema"."tables" WHERE "table_schema" = current_schema() AND "table_name" = 'migrations'
-[2020-08-30T12:46:58.261Z][QUERY]: SELECT * FROM "migrations" "migrations" ORDER BY "id" DESC
-[2020-08-30T12:51:23.279Z][QUERY]: START TRANSACTION
-[2020-08-30T12:51:23.282Z][QUERY]: SELECT * FROM "information_schema"."tables" WHERE "table_schema" = current_schema() AND "table_name" = 'typeorm_metadata'
-[2020-08-30T12:51:23.287Z][QUERY]: COMMIT
-[2020-08-30T12:51:23.289Z][QUERY]: SELECT * FROM "information_schema"."tables" WHERE "table_schema" = current_schema() AND "table_name" = 'migrations'
-[2020-08-30T12:51:23.292Z][QUERY]: SELECT * FROM "migrations" "migrations" ORDER BY "id" DESC
-[2020-08-30T12:54:03.716Z][QUERY]: START TRANSACTION
-[2020-08-30T12:54:03.719Z][QUERY]: SELECT * FROM "information_schema"."tables" WHERE "table_schema" = current_schema() AND "table_name" = 'typeorm_metadata'
-[2020-08-30T12:54:03.724Z][QUERY]: COMMIT
-[2020-08-30T12:54:03.726Z][QUERY]: SELECT * FROM "information_schema"."tables" WHERE "table_schema" = current_schema() AND "table_name" = 'migrations'
-[2020-08-30T12:54:03.730Z][QUERY]: SELECT * FROM "migrations" "migrations" ORDER BY "id" DESC
-[2020-08-30T12:54:12.266Z][QUERY]: START TRANSACTION
-[2020-08-30T12:54:12.269Z][QUERY]: SELECT * FROM "information_schema"."tables" WHERE "table_schema" = current_schema() AND "table_name" = 'typeorm_metadata'
-[2020-08-30T12:54:12.274Z][QUERY]: COMMIT
-[2020-08-30T12:54:12.277Z][QUERY]: SELECT * FROM "information_schema"."tables" WHERE "table_schema" = current_schema() AND "table_name" = 'migrations'
-[2020-08-30T12:54:12.281Z][QUERY]: SELECT * FROM "migrations" "migrations" ORDER BY "id" DESC
-[2020-08-30T12:59:42.754Z][QUERY]: START TRANSACTION
-[2020-08-30T12:59:42.758Z][QUERY]: SELECT * FROM "information_schema"."tables" WHERE "table_schema" = current_schema() AND "table_name" = 'typeorm_metadata'
-[2020-08-30T12:59:42.767Z][QUERY]: COMMIT
-[2020-08-30T12:59:42.770Z][QUERY]: SELECT * FROM "information_schema"."tables" WHERE "table_schema" = current_schema() AND "table_name" = 'migrations'
-[2020-08-30T12:59:42.775Z][QUERY]: SELECT * FROM "migrations" "migrations" ORDER BY "id" DESC
-[2020-08-30T13:01:53.645Z][QUERY]: START TRANSACTION
-[2020-08-30T13:01:53.649Z][QUERY]: SELECT * FROM "information_schema"."tables" WHERE "table_schema" = current_schema() AND "table_name" = 'typeorm_metadata'
-[2020-08-30T13:01:53.654Z][QUERY]: COMMIT
-[2020-08-30T13:01:53.656Z][QUERY]: SELECT * FROM "information_schema"."tables" WHERE "table_schema" = current_schema() AND "table_name" = 'migrations'
-[2020-08-30T13:01:53.660Z][QUERY]: SELECT * FROM "migrations" "migrations" ORDER BY "id" DESC
-[2020-08-30T13:02:32.278Z][QUERY]: START TRANSACTION
-[2020-08-30T13:02:32.281Z][QUERY]: SELECT * FROM "information_schema"."tables" WHERE "table_schema" = current_schema() AND "table_name" = 'typeorm_metadata'
-[2020-08-30T13:02:32.287Z][QUERY]: COMMIT
-[2020-08-30T13:02:32.289Z][QUERY]: SELECT * FROM "information_schema"."tables" WHERE "table_schema" = current_schema() AND "table_name" = 'migrations'
-[2020-08-30T13:02:32.292Z][QUERY]: SELECT * FROM "migrations" "migrations" ORDER BY "id" DESC
-[2020-08-30T13:03:15.941Z][QUERY]: START TRANSACTION
-[2020-08-30T13:03:15.944Z][QUERY]: SELECT * FROM "information_schema"."tables" WHERE "table_schema" = current_schema() AND "table_name" = 'typeorm_metadata'
-[2020-08-30T13:03:15.949Z][QUERY]: COMMIT
-[2020-08-30T13:03:15.951Z][QUERY]: SELECT * FROM "information_schema"."tables" WHERE "table_schema" = current_schema() AND "table_name" = 'migrations'
-[2020-08-30T13:03:15.955Z][QUERY]: SELECT * FROM "migrations" "migrations" ORDER BY "id" DESC
-[2020-08-30T13:04:42.490Z][QUERY]: START TRANSACTION
-[2020-08-30T13:04:42.493Z][QUERY]: SELECT * FROM "information_schema"."tables" WHERE "table_schema" = current_schema() AND "table_name" = 'typeorm_metadata'
-[2020-08-30T13:04:42.498Z][QUERY]: COMMIT
-[2020-08-30T13:04:42.501Z][QUERY]: SELECT * FROM "information_schema"."tables" WHERE "table_schema" = current_schema() AND "table_name" = 'migrations'
-[2020-08-30T13:04:42.504Z][QUERY]: SELECT * FROM "migrations" "migrations" ORDER BY "id" DESC
-[2020-08-30T13:07:59.994Z][QUERY]: START TRANSACTION
-[2020-08-30T13:07:59.997Z][QUERY]: SELECT * FROM "information_schema"."tables" WHERE "table_schema" = current_schema() AND "table_name" = 'typeorm_metadata'
-[2020-08-30T13:08:00.002Z][QUERY]: COMMIT
-[2020-08-30T13:08:00.004Z][QUERY]: SELECT * FROM "information_schema"."tables" WHERE "table_schema" = current_schema() AND "table_name" = 'migrations'
-[2020-08-30T13:08:00.008Z][QUERY]: SELECT * FROM "migrations" "migrations" ORDER BY "id" DESC
-[2020-08-30T13:08:27.681Z][QUERY]: START TRANSACTION
-[2020-08-30T13:08:27.685Z][QUERY]: SELECT * FROM "information_schema"."tables" WHERE "table_schema" = current_schema() AND "table_name" = 'typeorm_metadata'
-[2020-08-30T13:08:27.690Z][QUERY]: COMMIT
-[2020-08-30T13:08:27.692Z][QUERY]: SELECT * FROM "information_schema"."tables" WHERE "table_schema" = current_schema() AND "table_name" = 'migrations'
-[2020-08-30T13:08:27.696Z][QUERY]: SELECT * FROM "migrations" "migrations" ORDER BY "id" DESC
-[2020-08-30T13:08:34.974Z][QUERY]: START TRANSACTION
-[2020-08-30T13:08:34.977Z][QUERY]: SELECT * FROM "information_schema"."tables" WHERE "table_schema" = current_schema() AND "table_name" = 'typeorm_metadata'
-[2020-08-30T13:08:34.982Z][QUERY]: COMMIT
-[2020-08-30T13:08:34.984Z][QUERY]: SELECT * FROM "information_schema"."tables" WHERE "table_schema" = current_schema() AND "table_name" = 'migrations'
-[2020-08-30T13:08:34.988Z][QUERY]: SELECT * FROM "migrations" "migrations" ORDER BY "id" DESC
-[2020-08-30T13:08:46.671Z][QUERY]: START TRANSACTION
-[2020-08-30T13:08:46.675Z][QUERY]: SELECT * FROM "information_schema"."tables" WHERE "table_schema" = current_schema() AND "table_name" = 'typeorm_metadata'
-[2020-08-30T13:08:46.681Z][QUERY]: COMMIT
-[2020-08-30T13:08:46.683Z][QUERY]: SELECT * FROM "information_schema"."tables" WHERE "table_schema" = current_schema() AND "table_name" = 'migrations'
-[2020-08-30T13:08:46.686Z][QUERY]: SELECT * FROM "migrations" "migrations" ORDER BY "id" DESC
-[2020-08-30T13:13:39.041Z][QUERY]: START TRANSACTION
-[2020-08-30T13:13:39.045Z][QUERY]: SELECT * FROM "information_schema"."tables" WHERE "table_schema" = current_schema() AND "table_name" = 'typeorm_metadata'
-[2020-08-30T13:13:39.055Z][QUERY]: COMMIT
-[2020-08-30T13:13:39.058Z][QUERY]: SELECT * FROM "information_schema"."tables" WHERE "table_schema" = current_schema() AND "table_name" = 'migrations'
-[2020-08-30T13:13:39.065Z][QUERY]: SELECT * FROM "migrations" "migrations" ORDER BY "id" DESC
-[2020-08-30T13:13:41.949Z][QUERY]: START TRANSACTION
-[2020-08-30T13:13:41.953Z][QUERY]: SELECT * FROM "information_schema"."tables" WHERE "table_schema" = current_schema() AND "table_name" = 'typeorm_metadata'
-[2020-08-30T13:13:41.958Z][QUERY]: COMMIT
-[2020-08-30T13:13:41.960Z][QUERY]: SELECT * FROM "information_schema"."tables" WHERE "table_schema" = current_schema() AND "table_name" = 'migrations'
-[2020-08-30T13:13:41.963Z][QUERY]: SELECT * FROM "migrations" "migrations" ORDER BY "id" DESC
-[2020-08-30T13:14:21.509Z][QUERY]: START TRANSACTION
-[2020-08-30T13:14:21.512Z][QUERY]: SELECT * FROM "information_schema"."tables" WHERE "table_schema" = current_schema() AND "table_name" = 'typeorm_metadata'
-[2020-08-30T13:14:21.517Z][QUERY]: COMMIT
-[2020-08-30T13:14:21.519Z][QUERY]: SELECT * FROM "information_schema"."tables" WHERE "table_schema" = current_schema() AND "table_name" = 'migrations'
-[2020-08-30T13:14:21.523Z][QUERY]: SELECT * FROM "migrations" "migrations" ORDER BY "id" DESC
-[2020-08-30T13:14:31.652Z][QUERY]: START TRANSACTION
-[2020-08-30T13:14:31.656Z][QUERY]: SELECT * FROM "information_schema"."tables" WHERE "table_schema" = current_schema() AND "table_name" = 'typeorm_metadata'
-[2020-08-30T13:14:31.662Z][QUERY]: COMMIT
-[2020-08-30T13:14:31.664Z][QUERY]: SELECT * FROM "information_schema"."tables" WHERE "table_schema" = current_schema() AND "table_name" = 'migrations'
-[2020-08-30T13:14:31.667Z][QUERY]: SELECT * FROM "migrations" "migrations" ORDER BY "id" DESC
-[2020-08-30T13:14:39.843Z][QUERY]: START TRANSACTION
-[2020-08-30T13:14:39.846Z][QUERY]: SELECT * FROM "information_schema"."tables" WHERE "table_schema" = current_schema() AND "table_name" = 'typeorm_metadata'
-[2020-08-30T13:14:39.850Z][QUERY]: COMMIT
-[2020-08-30T13:14:39.852Z][QUERY]: SELECT * FROM "information_schema"."tables" WHERE "table_schema" = current_schema() AND "table_name" = 'migrations'
-[2020-08-30T13:14:39.856Z][QUERY]: SELECT * FROM "migrations" "migrations" ORDER BY "id" DESC
-[2020-08-30T13:17:19.227Z][QUERY]: START TRANSACTION
-[2020-08-30T13:17:19.231Z][QUERY]: SELECT * FROM "information_schema"."tables" WHERE "table_schema" = current_schema() AND "table_name" = 'typeorm_metadata'
-[2020-08-30T13:17:19.235Z][QUERY]: COMMIT
-[2020-08-30T13:17:19.238Z][QUERY]: SELECT * FROM "information_schema"."tables" WHERE "table_schema" = current_schema() AND "table_name" = 'migrations'
-[2020-08-30T13:17:19.241Z][QUERY]: SELECT * FROM "migrations" "migrations" ORDER BY "id" DESC
-[2020-08-30T13:17:35.911Z][QUERY]: START TRANSACTION
-[2020-08-30T13:17:35.914Z][QUERY]: SELECT * FROM "information_schema"."tables" WHERE "table_schema" = current_schema() AND "table_name" = 'typeorm_metadata'
-[2020-08-30T13:17:35.919Z][QUERY]: COMMIT
-[2020-08-30T13:17:35.921Z][QUERY]: SELECT * FROM "information_schema"."tables" WHERE "table_schema" = current_schema() AND "table_name" = 'migrations'
-[2020-08-30T13:17:35.925Z][QUERY]: SELECT * FROM "migrations" "migrations" ORDER BY "id" DESC
-[2020-08-30T13:18:02.150Z][QUERY]: START TRANSACTION
-[2020-08-30T13:18:02.153Z][QUERY]: SELECT * FROM "information_schema"."tables" WHERE "table_schema" = current_schema() AND "table_name" = 'typeorm_metadata'
-[2020-08-30T13:18:02.157Z][QUERY]: COMMIT
-[2020-08-30T13:18:02.159Z][QUERY]: SELECT * FROM "information_schema"."tables" WHERE "table_schema" = current_schema() AND "table_name" = 'migrations'
-[2020-08-30T13:18:02.163Z][QUERY]: SELECT * FROM "migrations" "migrations" ORDER BY "id" DESC
-[2020-08-30T13:18:13.392Z][QUERY]: START TRANSACTION
-[2020-08-30T13:18:13.396Z][QUERY]: SELECT * FROM "information_schema"."tables" WHERE "table_schema" = current_schema() AND "table_name" = 'typeorm_metadata'
-[2020-08-30T13:18:13.402Z][QUERY]: COMMIT
-[2020-08-30T13:18:13.404Z][QUERY]: SELECT * FROM "information_schema"."tables" WHERE "table_schema" = current_schema() AND "table_name" = 'migrations'
-[2020-08-30T13:18:13.408Z][QUERY]: SELECT * FROM "migrations" "migrations" ORDER BY "id" DESC
-[2020-08-30T13:18:32.141Z][QUERY]: START TRANSACTION
-[2020-08-30T13:18:32.145Z][QUERY]: SELECT * FROM "information_schema"."tables" WHERE "table_schema" = current_schema() AND "table_name" = 'typeorm_metadata'
-[2020-08-30T13:18:32.153Z][QUERY]: COMMIT
-[2020-08-30T13:18:32.155Z][QUERY]: SELECT * FROM "information_schema"."tables" WHERE "table_schema" = current_schema() AND "table_name" = 'migrations'
-[2020-08-30T13:18:32.159Z][QUERY]: SELECT * FROM "migrations" "migrations" ORDER BY "id" DESC
-[2020-08-30T13:18:44.074Z][QUERY]: START TRANSACTION
-[2020-08-30T13:18:44.077Z][QUERY]: SELECT * FROM "information_schema"."tables" WHERE "table_schema" = current_schema() AND "table_name" = 'typeorm_metadata'
-[2020-08-30T13:18:44.082Z][QUERY]: COMMIT
-[2020-08-30T13:18:44.084Z][QUERY]: SELECT * FROM "information_schema"."tables" WHERE "table_schema" = current_schema() AND "table_name" = 'migrations'
-[2020-08-30T13:18:44.088Z][QUERY]: SELECT * FROM "migrations" "migrations" ORDER BY "id" DESC
-[2020-08-30T13:19:04.711Z][QUERY]: START TRANSACTION
-[2020-08-30T13:19:04.714Z][QUERY]: SELECT * FROM "information_schema"."tables" WHERE "table_schema" = current_schema() AND "table_name" = 'typeorm_metadata'
-[2020-08-30T13:19:04.719Z][QUERY]: COMMIT
-[2020-08-30T13:19:04.721Z][QUERY]: SELECT * FROM "information_schema"."tables" WHERE "table_schema" = current_schema() AND "table_name" = 'migrations'
-[2020-08-30T13:19:04.725Z][QUERY]: SELECT * FROM "migrations" "migrations" ORDER BY "id" DESC
-[2020-08-30T13:19:59.112Z][QUERY]: START TRANSACTION
-[2020-08-30T13:19:59.115Z][QUERY]: SELECT * FROM "information_schema"."tables" WHERE "table_schema" = current_schema() AND "table_name" = 'typeorm_metadata'
-[2020-08-30T13:19:59.120Z][QUERY]: COMMIT
-[2020-08-30T13:19:59.122Z][QUERY]: SELECT * FROM "information_schema"."tables" WHERE "table_schema" = current_schema() AND "table_name" = 'migrations'
-[2020-08-30T13:19:59.126Z][QUERY]: SELECT * FROM "migrations" "migrations" ORDER BY "id" DESC
-[2020-08-30T13:20:27.691Z][QUERY]: START TRANSACTION
-[2020-08-30T13:20:27.694Z][QUERY]: SELECT * FROM "information_schema"."tables" WHERE "table_schema" = current_schema() AND "table_name" = 'typeorm_metadata'
-[2020-08-30T13:20:27.699Z][QUERY]: COMMIT
-[2020-08-30T13:20:27.701Z][QUERY]: SELECT * FROM "information_schema"."tables" WHERE "table_schema" = current_schema() AND "table_name" = 'migrations'
-[2020-08-30T13:20:27.705Z][QUERY]: SELECT * FROM "migrations" "migrations" ORDER BY "id" DESC
-[2020-08-30T13:20:55.260Z][QUERY]: START TRANSACTION
-[2020-08-30T13:20:55.263Z][QUERY]: SELECT * FROM "information_schema"."tables" WHERE "table_schema" = current_schema() AND "table_name" = 'typeorm_metadata'
-[2020-08-30T13:20:55.268Z][QUERY]: COMMIT
-[2020-08-30T13:20:55.269Z][QUERY]: SELECT * FROM "information_schema"."tables" WHERE "table_schema" = current_schema() AND "table_name" = 'migrations'
-[2020-08-30T13:20:55.273Z][QUERY]: SELECT * FROM "migrations" "migrations" ORDER BY "id" DESC
-[2020-08-30T13:22:36.663Z][QUERY]: START TRANSACTION
-[2020-08-30T13:22:36.666Z][QUERY]: SELECT * FROM "information_schema"."tables" WHERE "table_schema" = current_schema() AND "table_name" = 'typeorm_metadata'
-[2020-08-30T13:22:36.672Z][QUERY]: COMMIT
-[2020-08-30T13:22:36.674Z][QUERY]: SELECT * FROM "information_schema"."tables" WHERE "table_schema" = current_schema() AND "table_name" = 'migrations'
-[2020-08-30T13:22:36.677Z][QUERY]: SELECT * FROM "migrations" "migrations" ORDER BY "id" DESC
-[2020-08-30T13:23:37.435Z][QUERY]: START TRANSACTION
-[2020-08-30T13:23:37.438Z][QUERY]: SELECT * FROM "information_schema"."tables" WHERE "table_schema" = current_schema() AND "table_name" = 'typeorm_metadata'
-[2020-08-30T13:23:37.443Z][QUERY]: COMMIT
-[2020-08-30T13:23:37.445Z][QUERY]: SELECT * FROM "information_schema"."tables" WHERE "table_schema" = current_schema() AND "table_name" = 'migrations'
-[2020-08-30T13:23:37.449Z][QUERY]: SELECT * FROM "migrations" "migrations" ORDER BY "id" DESC
-[2020-08-30T13:24:01.705Z][QUERY]: START TRANSACTION
-[2020-08-30T13:24:01.708Z][QUERY]: SELECT * FROM "information_schema"."tables" WHERE "table_schema" = current_schema() AND "table_name" = 'typeorm_metadata'
-[2020-08-30T13:24:01.714Z][QUERY]: COMMIT
-[2020-08-30T13:24:01.715Z][QUERY]: SELECT * FROM "information_schema"."tables" WHERE "table_schema" = current_schema() AND "table_name" = 'migrations'
-[2020-08-30T13:24:01.719Z][QUERY]: SELECT * FROM "migrations" "migrations" ORDER BY "id" DESC
-[2020-08-30T13:24:22.977Z][QUERY]: START TRANSACTION
-[2020-08-30T13:24:22.980Z][QUERY]: SELECT * FROM "information_schema"."tables" WHERE "table_schema" = current_schema() AND "table_name" = 'typeorm_metadata'
-[2020-08-30T13:24:22.985Z][QUERY]: COMMIT
-[2020-08-30T13:24:22.987Z][QUERY]: SELECT * FROM "information_schema"."tables" WHERE "table_schema" = current_schema() AND "table_name" = 'migrations'
-[2020-08-30T13:24:22.990Z][QUERY]: SELECT * FROM "migrations" "migrations" ORDER BY "id" DESC
-[2020-08-30T13:26:32.373Z][QUERY]: START TRANSACTION
-[2020-08-30T13:26:32.376Z][QUERY]: SELECT * FROM "information_schema"."tables" WHERE "table_schema" = current_schema() AND "table_name" = 'typeorm_metadata'
-[2020-08-30T13:26:32.381Z][QUERY]: COMMIT
-[2020-08-30T13:26:32.383Z][QUERY]: SELECT * FROM "information_schema"."tables" WHERE "table_schema" = current_schema() AND "table_name" = 'migrations'
-[2020-08-30T13:26:32.386Z][QUERY]: SELECT * FROM "migrations" "migrations" ORDER BY "id" DESC
+[2020-08-30T15:30:16.753Z][QUERY]: START TRANSACTION
+[2020-08-30T15:30:16.757Z][QUERY]: SELECT * FROM "information_schema"."tables" WHERE "table_schema" = current_schema() AND "table_name" = 'typeorm_metadata'
+[2020-08-30T15:30:16.762Z][QUERY]: COMMIT
+[2020-08-30T15:30:16.764Z][QUERY]: SELECT * FROM "information_schema"."tables" WHERE "table_schema" = current_schema() AND "table_name" = 'migrations'
+[2020-08-30T15:30:16.767Z][QUERY]: SELECT * FROM "migrations" "migrations" ORDER BY "id" DESC
+[2020-08-30T15:39:49.857Z][QUERY]: START TRANSACTION
+[2020-08-30T15:39:49.860Z][QUERY]: SELECT * FROM "information_schema"."tables" WHERE "table_schema" = current_schema() AND "table_name" = 'typeorm_metadata'
+[2020-08-30T15:39:49.865Z][QUERY]: COMMIT
+[2020-08-30T15:39:49.867Z][QUERY]: SELECT * FROM "information_schema"."tables" WHERE "table_schema" = current_schema() AND "table_name" = 'migrations'
+[2020-08-30T15:39:49.871Z][QUERY]: SELECT * FROM "migrations" "migrations" ORDER BY "id" DESC
+[2020-08-30T15:40:54.619Z][QUERY]: START TRANSACTION
+[2020-08-30T15:40:54.622Z][QUERY]: SELECT * FROM "information_schema"."tables" WHERE "table_schema" = current_schema() AND "table_name" = 'typeorm_metadata'
+[2020-08-30T15:40:54.627Z][QUERY]: COMMIT
+[2020-08-30T15:40:54.629Z][QUERY]: SELECT * FROM "information_schema"."tables" WHERE "table_schema" = current_schema() AND "table_name" = 'migrations'
+[2020-08-30T15:40:54.633Z][QUERY]: SELECT * FROM "migrations" "migrations" ORDER BY "id" DESC
+[2020-08-30T15:41:47.833Z][QUERY]: START TRANSACTION
+[2020-08-30T15:41:47.837Z][QUERY]: SELECT * FROM "information_schema"."tables" WHERE "table_schema" = current_schema() AND "table_name" = 'typeorm_metadata'
+[2020-08-30T15:41:47.843Z][QUERY]: COMMIT
+[2020-08-30T15:41:47.845Z][QUERY]: SELECT * FROM "information_schema"."tables" WHERE "table_schema" = current_schema() AND "table_name" = 'migrations'
+[2020-08-30T15:41:47.848Z][QUERY]: SELECT * FROM "migrations" "migrations" ORDER BY "id" DESC
+[2020-08-30T15:42:05.672Z][QUERY]: START TRANSACTION
+[2020-08-30T15:42:05.675Z][QUERY]: SELECT * FROM "information_schema"."tables" WHERE "table_schema" = current_schema() AND "table_name" = 'typeorm_metadata'
+[2020-08-30T15:42:05.680Z][QUERY]: COMMIT
+[2020-08-30T15:42:05.682Z][QUERY]: SELECT * FROM "information_schema"."tables" WHERE "table_schema" = current_schema() AND "table_name" = 'migrations'
+[2020-08-30T15:42:05.687Z][QUERY]: SELECT * FROM "migrations" "migrations" ORDER BY "id" DESC
+[2020-08-30T15:42:40.888Z][QUERY]: START TRANSACTION
+[2020-08-30T15:42:40.891Z][QUERY]: SELECT * FROM "information_schema"."tables" WHERE "table_schema" = current_schema() AND "table_name" = 'typeorm_metadata'
+[2020-08-30T15:42:40.896Z][QUERY]: COMMIT
+[2020-08-30T15:42:40.898Z][QUERY]: SELECT * FROM "information_schema"."tables" WHERE "table_schema" = current_schema() AND "table_name" = 'migrations'
+[2020-08-30T15:42:40.902Z][QUERY]: SELECT * FROM "migrations" "migrations" ORDER BY "id" DESC
+[2020-08-30T15:43:42.410Z][QUERY]: START TRANSACTION
+[2020-08-30T15:43:42.414Z][QUERY]: SELECT * FROM "information_schema"."tables" WHERE "table_schema" = current_schema() AND "table_name" = 'typeorm_metadata'
+[2020-08-30T15:43:42.420Z][QUERY]: COMMIT
+[2020-08-30T15:43:42.422Z][QUERY]: SELECT * FROM "information_schema"."tables" WHERE "table_schema" = current_schema() AND "table_name" = 'migrations'
+[2020-08-30T15:43:42.426Z][QUERY]: SELECT * FROM "migrations" "migrations" ORDER BY "id" DESC
+[2020-08-30T15:43:57.547Z][QUERY]: START TRANSACTION
+[2020-08-30T15:43:57.550Z][QUERY]: SELECT * FROM "information_schema"."tables" WHERE "table_schema" = current_schema() AND "table_name" = 'typeorm_metadata'
+[2020-08-30T15:43:57.556Z][QUERY]: COMMIT
+[2020-08-30T15:43:57.558Z][QUERY]: SELECT * FROM "information_schema"."tables" WHERE "table_schema" = current_schema() AND "table_name" = 'migrations'
+[2020-08-30T15:43:57.561Z][QUERY]: SELECT * FROM "migrations" "migrations" ORDER BY "id" DESC
+[2020-08-30T15:49:17.342Z][QUERY]: START TRANSACTION
+[2020-08-30T15:49:17.346Z][QUERY]: SELECT * FROM "information_schema"."tables" WHERE "table_schema" = current_schema() AND "table_name" = 'typeorm_metadata'
+[2020-08-30T15:49:17.351Z][QUERY]: COMMIT
+[2020-08-30T15:49:17.353Z][QUERY]: SELECT * FROM "information_schema"."tables" WHERE "table_schema" = current_schema() AND "table_name" = 'migrations'
+[2020-08-30T15:49:17.357Z][QUERY]: SELECT * FROM "migrations" "migrations" ORDER BY "id" DESC
+[2020-08-30T15:49:33.167Z][QUERY]: START TRANSACTION
+[2020-08-30T15:49:33.170Z][QUERY]: SELECT * FROM "information_schema"."tables" WHERE "table_schema" = current_schema() AND "table_name" = 'typeorm_metadata'
+[2020-08-30T15:49:33.175Z][QUERY]: COMMIT
+[2020-08-30T15:49:33.177Z][QUERY]: SELECT * FROM "information_schema"."tables" WHERE "table_schema" = current_schema() AND "table_name" = 'migrations'
+[2020-08-30T15:49:33.181Z][QUERY]: SELECT * FROM "migrations" "migrations" ORDER BY "id" DESC
+[2020-08-30T15:50:41.712Z][QUERY]: START TRANSACTION
+[2020-08-30T15:50:41.716Z][QUERY]: SELECT * FROM "information_schema"."tables" WHERE "table_schema" = current_schema() AND "table_name" = 'typeorm_metadata'
+[2020-08-30T15:50:41.724Z][QUERY]: COMMIT
+[2020-08-30T15:50:41.728Z][QUERY]: SELECT * FROM "information_schema"."tables" WHERE "table_schema" = current_schema() AND "table_name" = 'migrations'
+[2020-08-30T15:50:41.735Z][QUERY]: SELECT * FROM "migrations" "migrations" ORDER BY "id" DESC
+[2020-08-30T15:51:46.912Z][QUERY]: START TRANSACTION
+[2020-08-30T15:51:46.915Z][QUERY]: SELECT * FROM "information_schema"."tables" WHERE "table_schema" = current_schema() AND "table_name" = 'typeorm_metadata'
+[2020-08-30T15:51:46.921Z][QUERY]: COMMIT
+[2020-08-30T15:51:46.923Z][QUERY]: SELECT * FROM "information_schema"."tables" WHERE "table_schema" = current_schema() AND "table_name" = 'migrations'
+[2020-08-30T15:51:46.927Z][QUERY]: SELECT * FROM "migrations" "migrations" ORDER BY "id" DESC
+[2020-08-30T15:54:11.183Z][QUERY]: START TRANSACTION
+[2020-08-30T15:54:11.186Z][QUERY]: SELECT * FROM "information_schema"."tables" WHERE "table_schema" = current_schema() AND "table_name" = 'typeorm_metadata'
+[2020-08-30T15:54:11.194Z][QUERY]: COMMIT
+[2020-08-30T15:54:11.196Z][QUERY]: SELECT * FROM "information_schema"."tables" WHERE "table_schema" = current_schema() AND "table_name" = 'migrations'
+[2020-08-30T15:54:11.201Z][QUERY]: SELECT * FROM "migrations" "migrations" ORDER BY "id" DESC
+[2020-08-30T15:54:13.511Z][QUERY]: START TRANSACTION
+[2020-08-30T15:54:13.514Z][QUERY]: SELECT * FROM "information_schema"."tables" WHERE "table_schema" = current_schema() AND "table_name" = 'typeorm_metadata'
+[2020-08-30T15:54:13.520Z][QUERY]: COMMIT
+[2020-08-30T15:54:13.522Z][QUERY]: SELECT * FROM "information_schema"."tables" WHERE "table_schema" = current_schema() AND "table_name" = 'migrations'
+[2020-08-30T15:54:13.526Z][QUERY]: SELECT * FROM "migrations" "migrations" ORDER BY "id" DESC
+[2020-08-30T15:57:52.789Z][QUERY]: START TRANSACTION
+[2020-08-30T15:57:52.792Z][QUERY]: SELECT * FROM "information_schema"."tables" WHERE "table_schema" = current_schema() AND "table_name" = 'typeorm_metadata'
+[2020-08-30T15:57:52.798Z][QUERY]: COMMIT
+[2020-08-30T15:57:52.800Z][QUERY]: SELECT * FROM "information_schema"."tables" WHERE "table_schema" = current_schema() AND "table_name" = 'migrations'
+[2020-08-30T15:57:52.804Z][QUERY]: SELECT * FROM "migrations" "migrations" ORDER BY "id" DESC
+[2020-08-30T16:08:10.421Z][QUERY]: START TRANSACTION
+[2020-08-30T16:08:10.424Z][QUERY]: SELECT * FROM "information_schema"."tables" WHERE "table_schema" = current_schema() AND "table_name" = 'typeorm_metadata'
+[2020-08-30T16:08:10.429Z][QUERY]: COMMIT
+[2020-08-30T16:08:10.431Z][QUERY]: SELECT * FROM "information_schema"."tables" WHERE "table_schema" = current_schema() AND "table_name" = 'migrations'
+[2020-08-30T16:08:10.435Z][QUERY]: SELECT * FROM "migrations" "migrations" ORDER BY "id" DESC
+[2020-08-30T16:08:28.771Z][QUERY]: START TRANSACTION
+[2020-08-30T16:08:28.774Z][QUERY]: SELECT * FROM "information_schema"."tables" WHERE "table_schema" = current_schema() AND "table_name" = 'typeorm_metadata'
+[2020-08-30T16:08:28.779Z][QUERY]: COMMIT
+[2020-08-30T16:08:28.781Z][QUERY]: SELECT * FROM "information_schema"."tables" WHERE "table_schema" = current_schema() AND "table_name" = 'migrations'
+[2020-08-30T16:08:28.785Z][QUERY]: SELECT * FROM "migrations" "migrations" ORDER BY "id" DESC
+[2020-08-30T16:08:51.858Z][QUERY]: START TRANSACTION
+[2020-08-30T16:08:51.862Z][QUERY]: SELECT * FROM "information_schema"."tables" WHERE "table_schema" = current_schema() AND "table_name" = 'typeorm_metadata'
+[2020-08-30T16:08:51.868Z][QUERY]: COMMIT
+[2020-08-30T16:08:51.870Z][QUERY]: SELECT * FROM "information_schema"."tables" WHERE "table_schema" = current_schema() AND "table_name" = 'migrations'
+[2020-08-30T16:08:51.874Z][QUERY]: SELECT * FROM "migrations" "migrations" ORDER BY "id" DESC
+[2020-08-30T16:09:47.898Z][QUERY]: START TRANSACTION
+[2020-08-30T16:09:47.901Z][QUERY]: SELECT * FROM "information_schema"."tables" WHERE "table_schema" = current_schema() AND "table_name" = 'typeorm_metadata'
+[2020-08-30T16:09:47.906Z][QUERY]: COMMIT
+[2020-08-30T16:09:47.908Z][QUERY]: SELECT * FROM "information_schema"."tables" WHERE "table_schema" = current_schema() AND "table_name" = 'migrations'
+[2020-08-30T16:09:47.912Z][QUERY]: SELECT * FROM "migrations" "migrations" ORDER BY "id" DESC
+[2020-08-30T16:15:32.573Z][QUERY]: START TRANSACTION
+[2020-08-30T16:15:32.577Z][QUERY]: SELECT * FROM "information_schema"."tables" WHERE "table_schema" = current_schema() AND "table_name" = 'typeorm_metadata'
+[2020-08-30T16:15:32.585Z][QUERY]: COMMIT
+[2020-08-30T16:15:32.588Z][QUERY]: SELECT * FROM "information_schema"."tables" WHERE "table_schema" = current_schema() AND "table_name" = 'migrations'
+[2020-08-30T16:15:32.592Z][QUERY]: SELECT * FROM "migrations" "migrations" ORDER BY "id" DESC
+[2020-08-30T16:15:48.688Z][QUERY]: START TRANSACTION
+[2020-08-30T16:15:48.692Z][QUERY]: SELECT * FROM "information_schema"."tables" WHERE "table_schema" = current_schema() AND "table_name" = 'typeorm_metadata'
+[2020-08-30T16:15:48.699Z][QUERY]: COMMIT
+[2020-08-30T16:15:48.701Z][QUERY]: SELECT * FROM "information_schema"."tables" WHERE "table_schema" = current_schema() AND "table_name" = 'migrations'
+[2020-08-30T16:15:48.705Z][QUERY]: SELECT * FROM "migrations" "migrations" ORDER BY "id" DESC
+[2020-08-30T16:25:36.671Z][QUERY]: START TRANSACTION
+[2020-08-30T16:25:36.677Z][QUERY]: SELECT * FROM "information_schema"."tables" WHERE "table_schema" = current_schema() AND "table_name" = 'typeorm_metadata'
+[2020-08-30T16:25:36.687Z][QUERY]: COMMIT
+[2020-08-30T16:25:36.691Z][QUERY]: SELECT * FROM "information_schema"."tables" WHERE "table_schema" = current_schema() AND "table_name" = 'migrations'
+[2020-08-30T16:25:36.698Z][QUERY]: SELECT * FROM "migrations" "migrations" ORDER BY "id" DESC
+[2020-08-30T16:28:34.931Z][QUERY]: START TRANSACTION
+[2020-08-30T16:28:34.934Z][QUERY]: SELECT * FROM "information_schema"."tables" WHERE "table_schema" = current_schema() AND "table_name" = 'typeorm_metadata'
+[2020-08-30T16:28:34.939Z][QUERY]: COMMIT
+[2020-08-30T16:28:34.941Z][QUERY]: SELECT * FROM "information_schema"."tables" WHERE "table_schema" = current_schema() AND "table_name" = 'migrations'
+[2020-08-30T16:28:34.945Z][QUERY]: SELECT * FROM "migrations" "migrations" ORDER BY "id" DESC
+[2020-08-30T16:29:05.242Z][QUERY]: START TRANSACTION
+[2020-08-30T16:29:05.245Z][QUERY]: SELECT * FROM "information_schema"."tables" WHERE "table_schema" = current_schema() AND "table_name" = 'typeorm_metadata'
+[2020-08-30T16:29:05.251Z][QUERY]: COMMIT
+[2020-08-30T16:29:05.253Z][QUERY]: SELECT * FROM "information_schema"."tables" WHERE "table_schema" = current_schema() AND "table_name" = 'migrations'
+[2020-08-30T16:29:05.256Z][QUERY]: SELECT * FROM "migrations" "migrations" ORDER BY "id" DESC
+[2020-08-30T16:29:25.659Z][QUERY]: START TRANSACTION
+[2020-08-30T16:29:25.663Z][QUERY]: SELECT * FROM "information_schema"."tables" WHERE "table_schema" = current_schema() AND "table_name" = 'typeorm_metadata'
+[2020-08-30T16:29:25.671Z][QUERY]: COMMIT
+[2020-08-30T16:29:25.674Z][QUERY]: SELECT * FROM "information_schema"."tables" WHERE "table_schema" = current_schema() AND "table_name" = 'migrations'
+[2020-08-30T16:29:25.680Z][QUERY]: SELECT * FROM "migrations" "migrations" ORDER BY "id" DESC
+[2020-08-30T16:29:45.016Z][QUERY]: START TRANSACTION
+[2020-08-30T16:29:45.019Z][QUERY]: SELECT * FROM "information_schema"."tables" WHERE "table_schema" = current_schema() AND "table_name" = 'typeorm_metadata'
+[2020-08-30T16:29:45.024Z][QUERY]: COMMIT
+[2020-08-30T16:29:45.026Z][QUERY]: SELECT * FROM "information_schema"."tables" WHERE "table_schema" = current_schema() AND "table_name" = 'migrations'
+[2020-08-30T16:29:45.030Z][QUERY]: SELECT * FROM "migrations" "migrations" ORDER BY "id" DESC
+[2020-08-30T16:30:38.867Z][QUERY]: START TRANSACTION
+[2020-08-30T16:30:38.870Z][QUERY]: SELECT * FROM "information_schema"."tables" WHERE "table_schema" = current_schema() AND "table_name" = 'typeorm_metadata'
+[2020-08-30T16:30:38.877Z][QUERY]: COMMIT
+[2020-08-30T16:30:38.879Z][QUERY]: SELECT * FROM "information_schema"."tables" WHERE "table_schema" = current_schema() AND "table_name" = 'migrations'
+[2020-08-30T16:30:38.883Z][QUERY]: SELECT * FROM "migrations" "migrations" ORDER BY "id" DESC
+[2020-08-30T16:30:59.238Z][QUERY]: START TRANSACTION
+[2020-08-30T16:30:59.241Z][QUERY]: SELECT * FROM "information_schema"."tables" WHERE "table_schema" = current_schema() AND "table_name" = 'typeorm_metadata'
+[2020-08-30T16:30:59.248Z][QUERY]: COMMIT
+[2020-08-30T16:30:59.250Z][QUERY]: SELECT * FROM "information_schema"."tables" WHERE "table_schema" = current_schema() AND "table_name" = 'migrations'
+[2020-08-30T16:30:59.254Z][QUERY]: SELECT * FROM "migrations" "migrations" ORDER BY "id" DESC
+[2020-08-30T16:33:41.668Z][QUERY]: START TRANSACTION
+[2020-08-30T16:33:41.671Z][QUERY]: SELECT * FROM "information_schema"."tables" WHERE "table_schema" = current_schema() AND "table_name" = 'typeorm_metadata'
+[2020-08-30T16:33:41.677Z][QUERY]: COMMIT
+[2020-08-30T16:33:41.679Z][QUERY]: SELECT * FROM "information_schema"."tables" WHERE "table_schema" = current_schema() AND "table_name" = 'migrations'
+[2020-08-30T16:33:41.683Z][QUERY]: SELECT * FROM "migrations" "migrations" ORDER BY "id" DESC
+[2020-08-30T16:34:50.149Z][QUERY]: START TRANSACTION
+[2020-08-30T16:34:50.154Z][QUERY]: SELECT * FROM "information_schema"."tables" WHERE "table_schema" = current_schema() AND "table_name" = 'typeorm_metadata'
+[2020-08-30T16:34:50.161Z][QUERY]: COMMIT
+[2020-08-30T16:34:50.164Z][QUERY]: SELECT * FROM "information_schema"."tables" WHERE "table_schema" = current_schema() AND "table_name" = 'migrations'
+[2020-08-30T16:34:50.168Z][QUERY]: SELECT * FROM "migrations" "migrations" ORDER BY "id" DESC
+[2020-08-30T16:35:59.980Z][QUERY]: START TRANSACTION
+[2020-08-30T16:35:59.984Z][QUERY]: SELECT * FROM "information_schema"."tables" WHERE "table_schema" = current_schema() AND "table_name" = 'typeorm_metadata'
+[2020-08-30T16:35:59.990Z][QUERY]: COMMIT
+[2020-08-30T16:35:59.991Z][QUERY]: SELECT * FROM "information_schema"."tables" WHERE "table_schema" = current_schema() AND "table_name" = 'migrations'
+[2020-08-30T16:35:59.995Z][QUERY]: SELECT * FROM "migrations" "migrations" ORDER BY "id" DESC
+[2020-08-30T16:46:18.162Z][QUERY]: START TRANSACTION
+[2020-08-30T16:46:18.165Z][QUERY]: SELECT * FROM "information_schema"."tables" WHERE "table_schema" = current_schema() AND "table_name" = 'typeorm_metadata'
+[2020-08-30T16:46:18.170Z][QUERY]: COMMIT
+[2020-08-30T16:46:18.172Z][QUERY]: SELECT * FROM "information_schema"."tables" WHERE "table_schema" = current_schema() AND "table_name" = 'migrations'
+[2020-08-30T16:46:18.176Z][QUERY]: SELECT * FROM "migrations" "migrations" ORDER BY "id" DESC
+[2020-08-30T17:52:10.526Z][QUERY]: START TRANSACTION
+[2020-08-30T17:52:10.530Z][QUERY]: SELECT * FROM "information_schema"."tables" WHERE "table_schema" = current_schema() AND "table_name" = 'typeorm_metadata'
+[2020-08-30T17:52:10.535Z][QUERY]: COMMIT
+[2020-08-30T17:52:10.537Z][QUERY]: SELECT * FROM "information_schema"."tables" WHERE "table_schema" = current_schema() AND "table_name" = 'migrations'
+[2020-08-30T17:52:10.542Z][QUERY]: SELECT * FROM "migrations" "migrations" ORDER BY "id" DESC
+[2020-08-30T17:52:55.878Z][QUERY]: START TRANSACTION
+[2020-08-30T17:52:55.881Z][QUERY]: SELECT * FROM "information_schema"."tables" WHERE "table_schema" = current_schema() AND "table_name" = 'typeorm_metadata'
+[2020-08-30T17:52:55.888Z][QUERY]: COMMIT
+[2020-08-30T17:52:55.890Z][QUERY]: SELECT * FROM "information_schema"."tables" WHERE "table_schema" = current_schema() AND "table_name" = 'migrations'
+[2020-08-30T17:52:55.895Z][QUERY]: SELECT * FROM "migrations" "migrations" ORDER BY "id" DESC

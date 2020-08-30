@@ -32,7 +32,7 @@ switch (process.env.NODE_ENV) {
     default:
         path = `${__dirname}/../../.env.development`;
 }
-dotenv.config({ path: path });
+dotenv.config({ path });
 exports.default = {
     environment: String(process.env.NODE_ENV),
     port: Number(process.env.PORT),
@@ -42,5 +42,6 @@ exports.default = {
     pg_db: process.env.POSTGRES_DB,
     pg_user: process.env.POSTGRES_USER,
     pg_pass: process.env.POSTGRES_PASSWORD,
+    redis_url: process.env.REDIS_URL,
 };
 //# sourceMappingURL=config.js.map
