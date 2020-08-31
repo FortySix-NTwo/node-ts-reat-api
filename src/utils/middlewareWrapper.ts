@@ -1,10 +1,13 @@
-import { Router } from 'express'
+import { Application } from 'express'
 
-import { Wrapper } from '../types'
+import { MiddlewareWrapper } from '../types'
 
-const registerMiddleware = (middlewareWrappers: Wrapper[], router: Router) => {
-  for (const wrapper of middlewareWrappers) {
-    wrapper(router)
+const registerMiddleware = (
+  wrappers: MiddlewareWrapper[],
+  server: Application
+) => {
+  for (const wrapper of wrappers) {
+    wrapper(server)
   }
 }
 

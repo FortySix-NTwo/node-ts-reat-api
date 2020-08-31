@@ -14,25 +14,19 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 const express_1 = __importDefault(require("express"));
 require("express-async-errors");
-require("reflect-metadata");
 const config_1 = require("../config");
+const server = express_1.default();
+const appLogger = config_1.configLogger();
+const { port, host, environment } = config_1.config;
 class Server {
-    constructor() {
-        this.setupServer();
-    }
-    setupServer() {
-        const server = express_1.default();
-        const environment = config_1.config.environment;
-        const port = config_1.config.port;
-        const host = config_1.config.host;
-        return { server, environment, port, host };
-    }
     start() {
         return __awaiter(this, void 0, void 0, function* () {
             try {
-                yield config_1.configServer();
-                this.setupServer().server.listen(this.setupServer().port, this.setupServer().host, () => {
-                    return this.setupServer().server;
+                yield config_1.configMiddleware(server);
+                yield config_1.configDB();
+                appLogger.info(`Database Connected`);
+                server.listen(port, host, () => {
+                    appLogger.info(`Server Running at http://${host}:${port}`);
                 });
             }
             catch (error) {
@@ -42,12 +36,10 @@ class Server {
     }
     stop(error) {
         return __awaiter(this, void 0, void 0, function* () {
-            if (this.setupServer().environment === 'development') {
-                console.error(`Internal Server Error ${error.stack}`);
-                process.exit(1);
+            if (environment === 'development') {
+                appLogger.error(`Internal Server Error ${error.stack}`);
             }
-            console.error(`Internal Server Error ${error}`);
-            process.exit(1);
+            appLogger.error(`Internal Server Error ${error}`);
         });
     }
 }

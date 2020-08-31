@@ -1,8 +1,8 @@
 import { Router } from 'express'
 
-import { Route } from '../types/index'
+import { RouteWrapper } from '../types'
 
-const registerRoutes = (routes: Route[], router: Router) => {
+export const registerRoutes = (routes: RouteWrapper[], router: Router) => {
   for (const route of routes) {
     const { method, path, handler } = route
     ;(router as any)[method](path, handler)

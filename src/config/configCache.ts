@@ -1,9 +1,11 @@
 import asyncRedis from 'async-redis'
 
-import { config } from './index'
+import { config } from '.'
+
+const { redis_url } = config
 
 export const redisClient = asyncRedis.createClient({
-  url: config.redis_url,
+  url: redis_url,
 })
 
 const configCache = async () => {

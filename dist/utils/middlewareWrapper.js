@@ -1,8 +1,8 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-const registerMiddleware = (middlewareWrappers, router) => {
-    for (const wrapper of middlewareWrappers) {
-        wrapper(router);
+const registerMiddleware = (wrappers, server) => {
+    for (const wrapper of wrappers) {
+        wrapper(server);
     }
 };
 exports.default = registerMiddleware;

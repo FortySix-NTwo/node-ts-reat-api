@@ -9,29 +9,26 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.configServer = void 0;
+exports.environment = exports.host = exports.port = exports.configMiddleware = void 0;
 const express_async_router_1 = require("express-async-router");
-const typeorm_1 = require("typeorm");
-const index_1 = require("./index");
+const _1 = require(".");
 const utils_1 = require("../utils");
 const middleware_1 = require("../middleware");
 const router = express_async_router_1.AsyncRouter();
-exports.configServer = () => __awaiter(void 0, void 0, void 0, function* () {
+const port = _1.config.port;
+exports.port = port;
+const host = _1.config.host;
+exports.host = host;
+const environment = _1.config.environment;
+exports.environment = environment;
+const configMiddleware = () => __awaiter(void 0, void 0, void 0, function* () {
     try {
-        process.on('uncaughtException', (e) => {
-            index_1.configLogger.error({
-                message: `uncaughtException`,
-                extra: e,
-            });
-            process.exit(1);
-        });
-        yield index_1.configCache();
-        yield typeorm_1.createConnection(index_1.configORM);
         utils_1.registerMiddleware(middleware_1.middleware, router);
         utils_1.registerMiddleware(middleware_1.HandleError, router);
     }
     catch (error) {
-        console.error(error);
+        throw new Error(error);
     }
 });
+exports.configMiddleware = configMiddleware;
 //# sourceMappingURL=configServer.js.map

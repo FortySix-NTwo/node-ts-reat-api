@@ -1,4 +1,5 @@
-import { Request, Response, NextFunction, Router } from 'express'
+import { Router } from 'express-async-router'
+import { Request, Response, NextFunction } from 'express'
 
 import {
   ErrorHandler,

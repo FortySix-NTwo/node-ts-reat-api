@@ -1,4 +1,5 @@
-export { default as Cache } from './cache'
-export { default as JWT } from './jwt'
-export { default as HandleError } from './handleErrors'
+export { default as cachedRoutes } from './cache'
+export { default as errorHandler } from './handleErrors'
+export { default as handleAuthorization } from './jwt'
 export { default as middleware } from './middleware'
+export { default as swaggerDocs } from './apiDocs'

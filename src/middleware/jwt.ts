@@ -1,12 +1,16 @@
+import jwt from 'jsonwebtoken'
 import { Request, Response, NextFunction } from 'express'
-import * as jwt from 'jsonwebtoken'
 
 import { config } from '../config'
 import { HTTP401Error } from '../utils'
 
 const secret = config.jwt
 
-const JWT = (req: Request, _res: Response, next: NextFunction) => {
+const handleAuthorization = (
+  req: Request,
+  _res: Response,
+  next: NextFunction
+) => {
   const authHeader = req.headers['authorization'] as string
 
   if (!authHeader) {
@@ -23,4 +27,4 @@ const JWT = (req: Request, _res: Response, next: NextFunction) => {
   }
 }
 
-export default JWT
+export default [handleAuthorization]

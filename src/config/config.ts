@@ -12,7 +12,6 @@ switch (process.env.NODE_ENV) {
   default:
     path = `${__dirname}/../../.env.development`
 }
-
 dotenv.config({ path })
 
 export default {

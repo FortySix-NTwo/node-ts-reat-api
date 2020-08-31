@@ -10,7 +10,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const config_1 = require("../config");
-const Cache = (key, res, next) => __awaiter(void 0, void 0, void 0, function* () {
+const cachedRoutes = (key, res, next) => __awaiter(void 0, void 0, void 0, function* () {
     let data = yield config_1.redisClient.get(key);
     if (data) {
         res.status(200).send(data);
@@ -19,5 +19,5 @@ const Cache = (key, res, next) => __awaiter(void 0, void 0, void 0, function* ()
         next();
     }
 });
-exports.default = Cache;
+exports.default = [cachedRoutes];
 //# sourceMappingURL=cache.js.map

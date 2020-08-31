@@ -1,17 +1,19 @@
-import { Router, Request, Response, NextFunction } from 'express'
+import { Request, Response, NextFunction, Application } from 'express'
 
-export type handler = (
+export type RouteHandler = (
   req: Request,
   res: Response,
   next: NextFunction
 ) => Promise<void> | void
 
-export type Route = {
+export type RouteWrapper = {
   path: string
   method: string
-  handler: handler | handler[]
+  handler: RouteHandler | RouteHandler[]
 }
 
-export type Wrapper = (router: Router) => void
+export type MiddlewareWrapper = (server: Application) => void
 
 export type ErrorWithCode = Error & { code?: string }
+
+export type Query<T> = { [key in keyof T]?: T[key] }

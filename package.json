@@ -44,6 +44,7 @@
     "url": "https://github.com/FortySix-NTwo/node-ts-reat-api"
   },
   "dependencies": {
+    "@sentry/node": "^5.22.3",
     "async-redis": "^1.1.7",
     "bcryptjs": "^2.4.3",
     "class-validator": "^0.12.2",

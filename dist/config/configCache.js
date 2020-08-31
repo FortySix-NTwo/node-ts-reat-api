@@ -14,9 +14,10 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.redisClient = void 0;
 const async_redis_1 = __importDefault(require("async-redis"));
-const index_1 = require("./index");
+const _1 = require(".");
+const { redis_url } = _1.config;
 exports.redisClient = async_redis_1.default.createClient({
-    url: index_1.config.redis_url,
+    url: redis_url,
 });
 const configCache = () => __awaiter(void 0, void 0, void 0, function* () {
     exports.redisClient.on('error', function (error) {

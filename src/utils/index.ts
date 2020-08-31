@@ -1,4 +1,5 @@
 export { default as ErrorHandler } from './errorHandler'
 export { default as registerMiddleware } from './middlewareWrapper'
 export { default as registerRoutes } from './routesWrapper'
+export { hashValue, validateHash, decodeBase64, encodeBase64 } from './encrypt'
 export * from './httpError'
