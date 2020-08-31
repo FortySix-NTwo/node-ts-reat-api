@@ -33,15 +33,16 @@ const Sentry = __importStar(require("@sentry/node"));
 const index_1 = require("./index");
 const utils_1 = require("../utils");
 const middleware_1 = require("../middleware");
-const { sentry_dsn } = index_1.config;
+const { sentry_dsn, environment } = index_1.config;
 exports.configMiddleware = (server) => __awaiter(void 0, void 0, void 0, function* () {
     try {
         utils_1.registerMiddleware(middleware_1.middleware, server);
-        utils_1.registerMiddleware(middleware_1.errorHandler, server);
         Sentry.init({ dsn: sentry_dsn });
     }
     catch (error) {
-        Sentry.captureException(error);
+        if (environment === 'development') {
+            Sentry.captureException(error);
+        }
         throw new Error(error);
     }
 });

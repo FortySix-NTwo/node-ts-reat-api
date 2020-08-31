@@ -1,6 +1,6 @@
 import asyncRedis from 'async-redis'
 
-import { config } from '.'
+import { config } from './index'
 
 const { redis_url } = config
 

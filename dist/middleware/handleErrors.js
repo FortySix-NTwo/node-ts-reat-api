@@ -8,14 +8,17 @@ const NotFoundError = (router) => {
 };
 const ClientError = (router) => {
     router.use((err, _req, res, next) => {
-        if (err.code === 'UnauthorizedError') {
+        if (err.code === 'Unauthorized') {
             err = new utils_1.HTTP401Error();
         }
-        else if (err.code === 'ForbiddenError') {
+        else if (err.code === 'Forbidden') {
             err = new utils_1.HTTP403Error();
         }
-        else {
+        else if (err.code === 'bad') {
             err = new utils_1.HTTP400Error();
+        }
+        else {
+            err = new utils_1.HTTP404Error();
         }
         utils_1.ErrorHandler.clientError(err, res, next);
     });

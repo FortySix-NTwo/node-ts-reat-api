@@ -1,7 +1,7 @@
 import winston from 'winston'
 import Sentry from 'winston-transport-sentry-node'
 
-import { config } from '.'
+import { config } from './index'
 
 const { sentry_dsn } = config
 

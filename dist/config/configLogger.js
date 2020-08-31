@@ -6,8 +6,8 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.configLogger = void 0;
 const winston_1 = __importDefault(require("winston"));
 const winston_transport_sentry_node_1 = __importDefault(require("winston-transport-sentry-node"));
-const _1 = require(".");
-const { sentry_dsn } = _1.config;
+const index_1 = require("./index");
+const { sentry_dsn } = index_1.config;
 exports.configLogger = () => {
     const appLogger = winston_1.default.createLogger({
         format: winston_1.default.format.combine(winston_1.default.format.timestamp(), winston_1.default.format.json()),
