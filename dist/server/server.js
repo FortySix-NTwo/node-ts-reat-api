@@ -13,25 +13,25 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const express_1 = __importDefault(require("express"));
+require("express-async-errors");
 require("reflect-metadata");
 const config_1 = require("../config");
 class Server {
     constructor() {
-        this.setupServer = () => {
-            const server = express_1.default();
-            const environment = config_1.config.environment;
-            const port = config_1.config.port;
-            const host = config_1.config.host;
-            return { server, environment, port, host };
-        };
         this.setupServer();
+    }
+    setupServer() {
+        const server = express_1.default();
+        const environment = config_1.config.environment;
+        const port = config_1.config.port;
+        const host = config_1.config.host;
+        return { server, environment, port, host };
     }
     start() {
         return __awaiter(this, void 0, void 0, function* () {
             try {
-                console.info('Database Running');
+                yield config_1.configServer();
                 this.setupServer().server.listen(this.setupServer().port, this.setupServer().host, () => {
-                    console.info(`Server running`);
                     return this.setupServer().server;
                 });
             }

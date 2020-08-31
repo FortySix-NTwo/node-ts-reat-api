@@ -1,14 +1,15 @@
 import express, { Application } from 'express'
+import 'express-async-errors'
 import 'reflect-metadata'
 
-import { config } from '../config'
+import { config, configServer } from '../config'
 
 class Server {
   constructor() {
     this.setupServer()
   }
 
-  private setupServer = () => {
+  setupServer() {
     const server: Application = express()
     const environment = config.environment
     const port = config.port
@@ -18,12 +19,11 @@ class Server {
 
   async start() {
     try {
-      console.info('Database Running')
+      await configServer()
       this.setupServer().server.listen(
         this.setupServer().port,
         this.setupServer().host,
         () => {
-          console.info(`Server running`)
           return this.setupServer().server
         }
       )
