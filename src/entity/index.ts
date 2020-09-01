@@ -1,0 +1,1 @@
+export { compareQuery } from './repository'

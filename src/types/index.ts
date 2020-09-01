@@ -1,4 +1,5 @@
 import { Request, Response, NextFunction, Application } from 'express'
+import { Router } from 'express-async-router'
 
 export type RouteHandler = (
   req: Request,
@@ -12,7 +13,9 @@ export type RouteWrapper = {
   handler: RouteHandler | RouteHandler[]
 }
 
-export type MiddlewareWrapper = (server: Application) => void
+export type ServerMiddlewareWrapper = (server: Application) => void
+
+export type RouterMiddlewareWrapper = (router: Router) => void
 
 export type ErrorWithCode = Error & { code?: string }
 

@@ -9,7 +9,7 @@
     "object-literal-sort-keys": false,
     "ordered-imports": false,
     "max-classes-per-file": false,
-    "no-console": false,
+    "no-console": true,
     "quotemark": [true, "single"],
     "variable-name": [true, "allow-leading-underscore"]
   }

@@ -24,6 +24,6 @@ export default {
   pg_user: String(process.env.POSTGRES_USER),
   pg_pass: String(process.env.POSTGRES_PASSWORD),
   redis_url: String(process.env.REDIS_URL),
-  jwt: String(process.env.JWT),
+  jwt_secret: String(process.env.JWT),
   sentry_dsn: String(process.env.SENTRY_DSN),
 }

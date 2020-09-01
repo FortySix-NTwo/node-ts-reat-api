@@ -2,41 +2,48 @@ import { Router } from 'express-async-router'
 import { Request, Response, NextFunction } from 'express'
 
 import {
-  ErrorHandler,
   HTTP401Error,
   HTTP403Error,
   HTTP400Error,
   HTTP404Error,
+  notFoundError,
+  clientError,
+  serverError,
 } from '../utils'
 
 import { ErrorWithCode } from '../types'
 
-const NotFoundError = (router: Router) => {
-  router.use((_req: Request, _res: Response) => {
-    ErrorHandler.notFoundError()
-  })
-}
-
 const ClientError = (router: Router) => {
   router.use(
     (err: ErrorWithCode, _req: Request, res: Response, next: NextFunction) => {
-      if (err.code === 'Unauthorized') {
-        err = new HTTP401Error()
-      } else if (err.code === 'Forbidden') {
-        err = new HTTP403Error()
-      } else if (err.code === 'bad') {
-        err = new HTTP400Error()
-      } else {
-        err = new HTTP404Error()
+      switch (err.code) {
+        case 'Bad Request':
+          err = new HTTP400Error()
+          break
+        case 'Unauthorized':
+          err = new HTTP401Error()
+          break
+        case 'Forbidden':
+          err = new HTTP403Error()
+          break
+        default:
+          err = new HTTP404Error()
+          break
       }
-      ErrorHandler.clientError(err, res, next)
+      return clientError(err, res, next)
     }
   )
 }
 
 const ServerError = (router: Router) => {
   router.use((err: Error, _req: Request, res: Response, next: NextFunction) => {
-    ErrorHandler.serverError(err, res, next)
+    serverError(err, res, next)
+  })
+}
+
+const NotFoundError = (router: Router) => {
+  router.use((_req: Request, _res: Response) => {
+    notFoundError()
   })
 }
 

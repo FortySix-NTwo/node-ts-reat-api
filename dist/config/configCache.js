@@ -8,21 +8,17 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
-var __importDefault = (this && this.__importDefault) || function (mod) {
-    return (mod && mod.__esModule) ? mod : { "default": mod };
-};
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.redisClient = void 0;
-const async_redis_1 = __importDefault(require("async-redis"));
 const index_1 = require("./index");
-const { redis_url } = index_1.config;
-exports.redisClient = async_redis_1.default.createClient({
-    url: redis_url,
+const connectToRedis = () => __awaiter(void 0, void 0, void 0, function* () {
+    try {
+        const client = yield index_1.configRedis();
+        return client;
+    }
+    catch (error) {
+        throw new Error(error);
+    }
 });
-const configCache = () => __awaiter(void 0, void 0, void 0, function* () {
-    exports.redisClient.on('error', function (error) {
-        console.log('Error ' + error);
-    });
-});
-exports.default = configCache;
+exports.redisClient = connectToRedis();
 //# sourceMappingURL=configCache.js.map

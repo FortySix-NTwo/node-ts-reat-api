@@ -22,19 +22,19 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.AuthToken = void 0;
 const jsonwebtoken = __importStar(require("jsonwebtoken"));
 const config_1 = require("../../config");
-const { jwt } = config_1.config;
+const { jwt_secret } = config_1.config;
 class AuthToken {
     constructor(user) {
-        if (!jwt)
+        if (!jwt_secret)
             throw new Error('Internal error');
-        this.value = jsonwebtoken.sign({ email: user.email }, jwt, {
+        this.value = jsonwebtoken.sign({ email: user.email }, jwt_secret, {
             expiresIn: '12h',
         });
     }
     static verify(token) {
-        if (!jwt)
+        if (!jwt_secret)
             throw new Error('Internal error');
-        return jsonwebtoken.verify(token, jwt);
+        return jsonwebtoken.verify(token, jwt_secret);
     }
     verify() {
         return AuthToken.verify(this.value);

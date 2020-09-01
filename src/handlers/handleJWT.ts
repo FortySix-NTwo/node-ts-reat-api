@@ -1,16 +1,12 @@
 import jwt from 'jsonwebtoken'
-import { Request, Response, NextFunction } from 'express'
+import { Request, NextFunction } from 'express'
 
 import { config } from '../config'
 import { HTTP401Error } from '../utils'
 
-const secret = config.jwt
+const { jwt_secret } = config
 
-const handleAuthorization = (
-  req: Request,
-  _res: Response,
-  next: NextFunction
-) => {
+const handleAuthorization = (req: Request, next: NextFunction) => {
   const authHeader = req.headers['authorization'] as string
 
   if (!authHeader) {
@@ -20,7 +16,7 @@ const handleAuthorization = (
   const token = authHeader.split(' ')[1]
 
   try {
-    jwt.verify(token, secret)
+    jwt.verify(token, jwt_secret)
     next()
   } catch (error) {
     throw new HTTP401Error()

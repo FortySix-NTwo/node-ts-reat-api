@@ -21,11 +21,9 @@ services:
     env_file:
       - ./.env.docker
     ports:
-      - 0.0.0.0:8001:5432
+      - 5432:5432
     volumes:
       - db-data:/var/lib/postgresql/data
-    expose:
-      - 8001/tcp
     networks:
       - server_network
 
@@ -34,7 +32,7 @@ services:
     env_file:
       - ./.env.docker
     ports:
-      - 0.0.0.0:8002:80
+      - 5431:80
     networks:
       - server_network
 
@@ -43,7 +41,7 @@ services:
     volumes:
       - redis-data:/data
     ports:
-      - 0.0.0.0:8003:6379
+      - 6379:6379
     command: redis-server
     networks:
       - server_network

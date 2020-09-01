@@ -19,23 +19,15 @@ var __importStar = (this && this.__importStar) || function (mod) {
     return result;
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.decodeBase64 = exports.encodeBase64 = exports.validateHash = exports.hashValue = void 0;
+exports.encodeBase64 = exports.hashValue = void 0;
 const bcrypt = __importStar(require("bcryptjs"));
 exports.hashValue = (rounds, password) => {
     const salt = bcrypt.genSaltSync(rounds);
     const hashed = bcrypt.hashSync(password, salt);
     return hashed;
 };
-exports.validateHash = (password, hash) => {
-    const isValid = bcrypt.compareSync(password, hash);
-    return isValid;
-};
 exports.encodeBase64 = (encode, length) => {
     const encodeValue = bcrypt.encodeBase64(encode, length);
     return encodeValue;
-};
-exports.decodeBase64 = (value, length) => {
-    const decodedValue = bcrypt.decodeBase64(value, length);
-    return decodedValue;
 };
 //# sourceMappingURL=encrypt.js.map
