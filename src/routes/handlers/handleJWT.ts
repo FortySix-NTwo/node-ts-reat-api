@@ -1,8 +1,8 @@
 import jwt from 'jsonwebtoken'
 import { Request, NextFunction } from 'express'
 
-import { config } from '../config'
-import { HTTP401Error } from '../utils'
+import { config } from '../../config'
+import { HTTP401Error } from '../../utils'
 
 const { jwt_secret } = config
 

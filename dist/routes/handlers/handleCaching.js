@@ -9,15 +9,23 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.configServerMiddleware = void 0;
-const utils_1 = require("../utils");
-const middleware_1 = require("../middleware");
-exports.configServerMiddleware = (server) => __awaiter(void 0, void 0, void 0, function* () {
+const config_1 = require("../../config");
+const utils_1 = require("../../utils");
+const handleCaching = (req, res, next) => __awaiter(void 0, void 0, void 0, function* () {
     try {
-        utils_1.registerServerMiddleware(middleware_1.middleware, server);
+        const key = req.params.key || req.body.key || req.query.key;
+        if (!key) {
+            next(new utils_1.HTTP400Error());
+        }
+        const result = config_1.asyncClient.get(key);
+        if (!result) {
+            next();
+        }
+        res.status(200).send(result);
     }
     catch (error) {
-        throw new Error(error);
+        next(new Error(error));
     }
 });
-//# sourceMappingURL=configServerMiddleware.js.map
+exports.default = [handleCaching];
+//# sourceMappingURL=handleCaching.js.map

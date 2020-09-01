@@ -12,8 +12,10 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.configRouterMiddleware = void 0;
 const utils_1 = require("../utils");
 const middleware_1 = require("../middleware");
+const routes_1 = require("../routes");
 exports.configRouterMiddleware = (router) => __awaiter(void 0, void 0, void 0, function* () {
     try {
+        utils_1.registerRouterMiddleware(routes_1.healthCheck, router);
         utils_1.registerRouterMiddleware(middleware_1.swaggerDocs, router);
         utils_1.registerRouterMiddleware(middleware_1.routingErrors, router);
     }

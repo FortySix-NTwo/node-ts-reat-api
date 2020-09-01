@@ -11,19 +11,10 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.configRoutes = void 0;
 const utils_1 = require("../utils");
-exports.configRoutes = (router) => __awaiter(void 0, void 0, void 0, function* () {
+exports.configRoutes = (wrapper, router) => __awaiter(void 0, void 0, void 0, function* () {
     try {
-        utils_1.registerRoutes([
-            {
-                path: '',
-                method: '',
-                handler: [
-                    (_req, res) => __awaiter(void 0, void 0, void 0, function* () {
-                        res.status(200).send();
-                    }),
-                ],
-            },
-        ], router);
+        utils_1.registerRoutes(wrapper, router);
+        return router;
     }
     catch (error) {
         throw new Error(error);

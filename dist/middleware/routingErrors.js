@@ -17,7 +17,7 @@ const ClientError = (router) => {
                 err = new utils_1.HTTP404Error();
                 break;
         }
-        return utils_1.clientError(err, res, next);
+        utils_1.clientError(err, res, next);
     });
 };
 const ServerError = (router) => {

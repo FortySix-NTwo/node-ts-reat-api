@@ -30,7 +30,7 @@ const ClientError = (router: Router) => {
           err = new HTTP404Error()
           break
       }
-      return clientError(err, res, next)
+      clientError(err, res, next)
     }
   )
 }
