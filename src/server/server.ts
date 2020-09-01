@@ -1,19 +1,19 @@
 import express, { Application } from 'express'
+import { Router, AsyncRouter } from 'express-async-router'
 import 'express-async-errors'
 
-import { config, configLogger, configMiddleware, configDB } from '../config'
+import { config, configApp, configLogger, configDB } from '../config'
 
 const server: Application = express()
+const router: Router = AsyncRouter()
 const appLogger = configLogger()
-
 const { port, host, environment } = config
 
 class Server {
   async start() {
     try {
-      await configMiddleware(server)
+      await configApp(server, router)
       await configDB()
-      appLogger.info(`Database Connected`)
       server.listen(port, host, () => {
         appLogger.info(`Server Running at http://${host}:${port}`)
       })
@@ -25,8 +25,10 @@ class Server {
   async stop(error: Error) {
     if (environment === 'development') {
       appLogger.error(`Internal Server Error ${error.stack}`)
+      process.exit(1)
     }
     appLogger.error(`Internal Server Error ${error}`)
+    process.exit(1)
   }
 }
 

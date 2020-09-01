@@ -1,7 +1,7 @@
 import { createConnection, ConnectionOptions } from 'typeorm'
 import 'reflect-metadata'
 
-import { config } from '.'
+import { config } from './index'
 
 const { pg_host, pg_port, pg_user, pg_pass, pg_db } = config
 

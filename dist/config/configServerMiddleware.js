@@ -28,17 +28,15 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.configMiddleware = void 0;
+exports.configServerMiddleware = void 0;
 const Sentry = __importStar(require("@sentry/node"));
 const index_1 = require("./index");
 const utils_1 = require("../utils");
 const middleware_1 = require("../middleware");
 const { sentry_dsn, environment } = index_1.config;
-exports.configMiddleware = (server) => __awaiter(void 0, void 0, void 0, function* () {
+exports.configServerMiddleware = (server) => __awaiter(void 0, void 0, void 0, function* () {
     try {
-        yield index_1.configDB();
         utils_1.registerServerMiddleware(middleware_1.middleware, server);
-        utils_1.registerServerMiddleware(index_1.configRedis, server);
         Sentry.init({ dsn: sentry_dsn });
     }
     catch (error) {

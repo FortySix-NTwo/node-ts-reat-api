@@ -6,9 +6,9 @@ import rateLimit from 'express-rate-limit'
 
 const RateLimit = (server: Application) => {
   const limit = rateLimit({
-    max: 100,
-    windowMs: 30 * 60 * 1000,
-    message: `Request Limit per has been reached`,
+    max: 50,
+    windowMs: 60 * 60 * 1000,
+    message: 'Request Limited',
   })
   server.use(limit)
 }
