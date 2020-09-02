@@ -34,6 +34,7 @@ const configORM = {
 exports.configDB = () => __awaiter(void 0, void 0, void 0, function* () {
     try {
         yield typeorm_1.createConnection(configORM);
+        index_1.appLogger.info(`Postgres database connected`);
     }
     catch (error) {
         throw new Error(error);

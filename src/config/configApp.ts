@@ -1,21 +1,52 @@
 import { Application } from 'express'
 import { Router } from 'express-async-router'
-import * as Sentry from '@sentry/node'
+import 'express-async-errors'
 
-import { configServerMiddleware, configRouterMiddleware, config } from './index'
-const { sentry_dsn, environment } = config
+import {
+  configServerMiddleware,
+  configRouterMiddleware,
+  configDB,
+  appLogger,
+  config,
+} from './index'
+
+const { port, host, environment } = config
 
 export const configApp = async (server: Application, router: Router) => {
   try {
-    Sentry.init({ dsn: sentry_dsn })
+    process.on('uncaughtException', (error) => {
+      appLogger.error({
+        message: `uncaught Exception`,
+        extra: error,
+      })
+      process.exit(1)
+    })
+
+    process.on('unhandledRejection', (error) => {
+      appLogger.error({
+        message: `unhandled Rejection`,
+        extra: error,
+      })
+      process.exit(1)
+    })
+
+    await configDB()
     await configServerMiddleware(server)
     await configRouterMiddleware(router)
+
     server.use(router)
+
+    server.listen(port, host, () => {
+      appLogger.info(`Server Running at http://${host}:${port}`)
+    })
+
     return server
   } catch (error) {
     if (environment === 'development') {
-      Sentry.captureException(error.stack)
+      appLogger.error(`Internal Server Error ${error.stack}`)
+      process.exit(1)
     }
-    throw new Error(error)
+    appLogger.error(`Internal Server Error ${error}`)
+    process.exit(1)
   }
 }

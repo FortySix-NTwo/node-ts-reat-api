@@ -1,17 +1,5 @@
-import { Request, Response, NextFunction, Application } from 'express'
+import { Application } from 'express'
 import { Router } from 'express-async-router'
-
-export type RouteHandler = (
-  req: Request,
-  res: Response,
-  next: NextFunction
-) => Promise<void> | void
-
-export type RouteWrapper = {
-  path: string
-  method: string
-  handler: RouteHandler | RouteHandler[]
-}
 
 export type ServerMiddlewareWrapper = (server: Application) => void
 

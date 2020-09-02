@@ -15,16 +15,16 @@ const handleCaching = (req, res, next) => __awaiter(void 0, void 0, void 0, func
     try {
         const key = req.params.key || req.body.key || req.query.key;
         if (!key) {
-            next(new utils_1.HTTP400Error());
+            throw new utils_1.HTTP400Error();
         }
-        const result = config_1.asyncClient.get(key);
+        const result = config_1.redisClient.get(key);
         if (!result) {
-            next();
+            return;
         }
         res.status(200).send(result);
     }
     catch (error) {
-        next(new Error(error));
+        next();
     }
 });
 exports.default = [handleCaching];

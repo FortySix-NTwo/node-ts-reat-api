@@ -20,14 +20,14 @@ const ClientError = (router) => {
         utils_1.clientError(err, res, next);
     });
 };
-const ServerError = (router) => {
-    router.use((err, _req, res, next) => {
-        utils_1.serverError(err, res, next);
-    });
-};
 const NotFoundError = (router) => {
     router.use((_req, _res) => {
         utils_1.notFoundError();
+    });
+};
+const ServerError = (router) => {
+    router.use((err, _req, res, next) => {
+        utils_1.serverError(err, res, next);
     });
 };
 exports.default = [NotFoundError, ClientError, ServerError];

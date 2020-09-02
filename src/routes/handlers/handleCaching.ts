@@ -1,6 +1,6 @@
 import { Request, Response, NextFunction } from 'express'
 
-import { asyncClient } from '../../config'
+import { redisClient } from '../../config'
 import { HTTP400Error } from '../../utils'
 
 const handleCaching = async (
@@ -9,17 +9,17 @@ const handleCaching = async (
   next: NextFunction
 ) => {
   try {
-    const key = req.params.key || req.body.key || req.query.key
+    const key: string = req.params.key || req.body.key || req.query.key
     if (!key) {
-      next(new HTTP400Error())
+      throw new HTTP400Error()
     }
-    const result = asyncClient.get(key)
+    const result = redisClient.get(key)
     if (!result) {
-      next()
+      return
     }
     res.status(200).send(result)
   } catch (error) {
-    next(new Error(error))
+    next()
   }
 }
 

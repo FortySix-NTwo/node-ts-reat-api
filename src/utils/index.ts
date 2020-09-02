@@ -1,6 +1,5 @@
 export { default as registerServerMiddleware } from './serverMiddlewareWrapper'
 export { default as registerRouterMiddleware } from './routesMiddlewareWrapper'
-export { default as registerRoutes } from './routesWrapper'
 export { hashValue, encodeBase64 } from './encrypt'
 export { validateHash, decodeBase64 } from './decrypt'
 export { notFoundError, clientError, HTTPClientError } from './clientError'

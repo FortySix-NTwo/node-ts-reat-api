@@ -13,13 +13,11 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.serverError = exports.HTTPClientError = exports.clientError = exports.notFoundError = exports.decodeBase64 = exports.validateHash = exports.encodeBase64 = exports.hashValue = exports.registerRoutes = exports.registerRouterMiddleware = exports.registerServerMiddleware = void 0;
+exports.serverError = exports.HTTPClientError = exports.clientError = exports.notFoundError = exports.decodeBase64 = exports.validateHash = exports.encodeBase64 = exports.hashValue = exports.registerRouterMiddleware = exports.registerServerMiddleware = void 0;
 var serverMiddlewareWrapper_1 = require("./serverMiddlewareWrapper");
 Object.defineProperty(exports, "registerServerMiddleware", { enumerable: true, get: function () { return __importDefault(serverMiddlewareWrapper_1).default; } });
 var routesMiddlewareWrapper_1 = require("./routesMiddlewareWrapper");
 Object.defineProperty(exports, "registerRouterMiddleware", { enumerable: true, get: function () { return __importDefault(routesMiddlewareWrapper_1).default; } });
-var routesWrapper_1 = require("./routesWrapper");
-Object.defineProperty(exports, "registerRoutes", { enumerable: true, get: function () { return __importDefault(routesWrapper_1).default; } });
 var encrypt_1 = require("./encrypt");
 Object.defineProperty(exports, "hashValue", { enumerable: true, get: function () { return encrypt_1.hashValue; } });
 Object.defineProperty(exports, "encodeBase64", { enumerable: true, get: function () { return encrypt_1.encodeBase64; } });

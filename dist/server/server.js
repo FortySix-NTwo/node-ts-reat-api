@@ -14,35 +14,18 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 const express_1 = __importDefault(require("express"));
 const express_async_router_1 = require("express-async-router");
-require("express-async-errors");
 const config_1 = require("../config");
 const server = express_1.default();
 const router = express_async_router_1.AsyncRouter();
-const appLogger = config_1.configLogger();
-const { port, host, environment } = config_1.config;
 class Server {
     start() {
         return __awaiter(this, void 0, void 0, function* () {
             try {
                 yield config_1.configApp(server, router);
-                yield config_1.configDB();
-                server.listen(port, host, () => {
-                    appLogger.info(`Server Running at http://${host}:${port}`);
-                });
             }
             catch (error) {
-                this.stop(error);
+                throw new Error(error);
             }
-        });
-    }
-    stop(error) {
-        return __awaiter(this, void 0, void 0, function* () {
-            if (environment === 'development') {
-                appLogger.error(`Internal Server Error ${error.stack}`);
-                process.exit(1);
-            }
-            appLogger.error(`Internal Server Error ${error}`);
-            process.exit(1);
         });
     }
 }

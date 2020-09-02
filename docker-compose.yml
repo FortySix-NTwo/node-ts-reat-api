@@ -7,6 +7,7 @@ services:
   #    container_name: server
   #    depends_on:
   #      - pg_db
+  #      - redis_cache
   #    restart: always
   #    working_dir: /opt/app
   #    volumes:

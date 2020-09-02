@@ -10,13 +10,14 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const server_1 = require("./server");
+const config_1 = require("./config");
 const server = new server_1.Server();
 const main = () => __awaiter(void 0, void 0, void 0, function* () {
     try {
         yield server.start();
     }
     catch (error) {
-        yield server.stop(error);
+        config_1.appLogger.info(error);
     }
 });
 main();

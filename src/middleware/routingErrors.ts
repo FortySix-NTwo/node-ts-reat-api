@@ -35,15 +35,15 @@ const ClientError = (router: Router) => {
   )
 }
 
-const ServerError = (router: Router) => {
-  router.use((err: Error, _req: Request, res: Response, next: NextFunction) => {
-    serverError(err, res, next)
-  })
-}
-
 const NotFoundError = (router: Router) => {
   router.use((_req: Request, _res: Response) => {
     notFoundError()
+  })
+}
+
+const ServerError = (router: Router) => {
+  router.use((err: Error, _req: Request, res: Response, next: NextFunction) => {
+    serverError(err, res, next)
   })
 }
 

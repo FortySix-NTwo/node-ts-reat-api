@@ -1,23 +1,4 @@
 "use strict";
-var __createBinding = (this && this.__createBinding) || (Object.create ? (function(o, m, k, k2) {
-    if (k2 === undefined) k2 = k;
-    Object.defineProperty(o, k2, { enumerable: true, get: function() { return m[k]; } });
-}) : (function(o, m, k, k2) {
-    if (k2 === undefined) k2 = k;
-    o[k2] = m[k];
-}));
-var __setModuleDefault = (this && this.__setModuleDefault) || (Object.create ? (function(o, v) {
-    Object.defineProperty(o, "default", { enumerable: true, value: v });
-}) : function(o, v) {
-    o["default"] = v;
-});
-var __importStar = (this && this.__importStar) || function (mod) {
-    if (mod && mod.__esModule) return mod;
-    var result = {};
-    if (mod != null) for (var k in mod) if (k !== "default" && Object.prototype.hasOwnProperty.call(mod, k)) __createBinding(result, mod, k);
-    __setModuleDefault(result, mod);
-    return result;
-};
 var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
     function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
     return new (P || (P = Promise))(function (resolve, reject) {
@@ -29,22 +10,41 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.configApp = void 0;
-const Sentry = __importStar(require("@sentry/node"));
+require("express-async-errors");
 const index_1 = require("./index");
-const { sentry_dsn, environment } = index_1.config;
+const { port, host, environment } = index_1.config;
 exports.configApp = (server, router) => __awaiter(void 0, void 0, void 0, function* () {
     try {
-        Sentry.init({ dsn: sentry_dsn });
+        process.on('uncaughtException', (error) => {
+            index_1.appLogger.error({
+                message: `uncaught Exception`,
+                extra: error,
+            });
+            process.exit(1);
+        });
+        process.on('unhandledRejection', (error) => {
+            index_1.appLogger.error({
+                message: `unhandled Rejection`,
+                extra: error,
+            });
+            process.exit(1);
+        });
+        yield index_1.configDB();
         yield index_1.configServerMiddleware(server);
         yield index_1.configRouterMiddleware(router);
         server.use(router);
+        server.listen(port, host, () => {
+            index_1.appLogger.info(`Server Running at http://${host}:${port}`);
+        });
         return server;
     }
     catch (error) {
         if (environment === 'development') {
-            Sentry.captureException(error.stack);
+            index_1.appLogger.error(`Internal Server Error ${error.stack}`);
+            process.exit(1);
         }
-        throw new Error(error);
+        index_1.appLogger.error(`Internal Server Error ${error}`);
+        process.exit(1);
     }
 });
 //# sourceMappingURL=configApp.js.map
