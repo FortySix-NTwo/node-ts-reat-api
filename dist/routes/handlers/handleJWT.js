@@ -8,7 +8,7 @@ const config_1 = require("../../config");
 const utils_1 = require("../../utils");
 const { jwt_secret } = config_1.config;
 const handleAuthorization = (req, next) => {
-    const authHeader = req.headers['authorization'];
+    const authHeader = req.headers.authorization;
     if (!authHeader) {
         throw new utils_1.HTTP401Error();
     }

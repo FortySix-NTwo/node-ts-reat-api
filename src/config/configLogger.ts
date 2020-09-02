@@ -7,7 +7,9 @@ import { config } from './index'
 const { sentry_dsn } = config
 
 const logger = (): winston.Logger => {
-  SentryNode.init({ dsn: sentry_dsn })
+  SentryNode.init({
+    dsn: sentry_dsn,
+  })
   const logger = winston.createLogger({
     format: winston.format.combine(
       winston.format.prettyPrint(),

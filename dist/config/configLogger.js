@@ -29,7 +29,9 @@ const SentryNode = __importStar(require("@sentry/node"));
 const index_1 = require("./index");
 const { sentry_dsn } = index_1.config;
 const logger = () => {
-    SentryNode.init({ dsn: sentry_dsn });
+    SentryNode.init({
+        dsn: sentry_dsn,
+    });
     const logger = winston_1.default.createLogger({
         format: winston_1.default.format.combine(winston_1.default.format.prettyPrint(), winston_1.default.format.simple(), winston_1.default.format.label()),
         transports: [

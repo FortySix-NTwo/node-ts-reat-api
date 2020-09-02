@@ -21,7 +21,6 @@ export const configApp = async (server: Application, router: Router) => {
       })
       process.exit(1)
     })
-
     process.on('unhandledRejection', (error) => {
       appLogger.error({
         message: `unhandled Rejection`,
@@ -29,13 +28,10 @@ export const configApp = async (server: Application, router: Router) => {
       })
       process.exit(1)
     })
-
     await configDB()
     await configServerMiddleware(server)
     await configRouterMiddleware(router)
-
     server.use(router)
-
     server.listen(port, host, () => {
       appLogger.info(`Server Running at http://${host}:${port}`)
     })

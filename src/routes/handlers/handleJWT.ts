@@ -7,7 +7,7 @@ import { HTTP401Error } from '../../utils'
 const { jwt_secret } = config
 
 const handleAuthorization = (req: Request, next: NextFunction) => {
-  const authHeader = req.headers['authorization'] as string
+  const authHeader = req.headers.authorization as string
 
   if (!authHeader) {
     throw new HTTP401Error()

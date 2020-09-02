@@ -45,5 +45,7 @@ exports.default = {
     redis_url: String(process.env.REDIS_URL),
     jwt_secret: String(process.env.JWT),
     sentry_dsn: String(process.env.SENTRY_DSN),
+    package_name: String(process.env.APP_NAME),
+    package_version: String(process.env.APP_VERSION),
 };
 //# sourceMappingURL=config.js.map
