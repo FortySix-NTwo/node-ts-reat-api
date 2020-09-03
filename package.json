@@ -17,12 +17,11 @@
     "typeorm:migrate": "yarn typeorm migration:generate -- -n",
     "typeorm:run": "yarn typeorm migration:run",
     "__comment_3__": "echo '_________________________________ Docker Scripts ______________________________________'",
-    "docker:build": "docker-compose up -d --build",
-    "docker:up": "docker-compose up",
-    "docker:down": "docker-compose down",
+    "docker:dev": "make dev",
+    "docker:prod": "make prod",
     "docker:check": "docker ps",
-    "docker:teardown": "docker container prune",
-    "docker:purge": "docker system prune"
+    "docker:teardown": "make teardown",
+    "docker:purge": "make purge"
   },
   "keywords": [
     "Node.js",
@@ -35,7 +34,8 @@
     "DDD",
     "TDD",
     "Socket.io",
-    "Redis"
+    "Redis",
+    "Docker"
   ],
   "author": "Jonathan Farber",
   "license": "MIT",

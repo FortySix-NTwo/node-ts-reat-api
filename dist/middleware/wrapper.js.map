@@ -1,1 +1,0 @@
-{"version":3,"file":"wrapper.js","sourceRoot":"","sources":["../../src/middleware/wrapper.ts"],"names":[],"mappings":";;AAIA,MAAM,kBAAkB,GAAG,CAAC,kBAA6B,EAAE,MAAc,EAAE,EAAE;IAC3E,KAAK,MAAM,OAAO,IAAI,kBAAkB,EAAE;QACxC,OAAO,CAAC,MAAM,CAAC,CAAA;KAChB;AACH,CAAC,CAAA;AAED,kBAAe,kBAAkB,CAAA"}

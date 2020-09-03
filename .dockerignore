@@ -1,19 +1,16 @@
-# Generated node modules
+#__Generated node modules__
 node_modules
 
-# Environment Variables
+#__Environment Variables__
 .env.development
 .env.test
 .env.production
 
-# Visual Studio Code Settings
+#__Visual Studio Code Settings__
 .vscode
 
-# Mac OS Specific files
+#__Mac OS Specific files__
 .DS_Store
 
-# TypeORM log files
+#__TypeORM log files__
 ormlogs.log
-
-# Jest Coverage
-coverage

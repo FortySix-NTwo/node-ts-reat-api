@@ -1,1 +1,0 @@
-{"version":3,"file":"configServerMiddleware.js","sourceRoot":"","sources":["../../src/config/configServerMiddleware.ts"],"names":[],"mappings":";;;;;;;;;;;;AAEA,oCAAmD;AACnD,8CAA0C;AAE7B,QAAA,sBAAsB,GAAG,CAAO,MAAmB,EAAE,EAAE;IAClE,IAAI;QACF,gCAAwB,CAAC,uBAAU,EAAE,MAAM,CAAC,CAAA;KAC7C;IAAC,OAAO,KAAK,EAAE;QACd,MAAM,IAAI,KAAK,CAAC,KAAK,CAAC,CAAA;KACvB;AACH,CAAC,CAAA,CAAA"}
