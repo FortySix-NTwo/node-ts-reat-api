@@ -39,8 +39,8 @@ export default [
   RateLimit,
   JSONParsing,
   BodyParsing,
+  cookieParsing,
   HTTPHeaders,
   Cors,
   Compression,
-  cookieParsing,
 ]

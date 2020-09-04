@@ -14,6 +14,9 @@ class UserRepository implements IRepository<User> {
   constructor() {
     this.userRepository = getRepository(User)
   }
+  findOneByID(query: Query<User>): Promise<User | undefined> {
+    throw new Error('Method not implemented.')
+  }
 
   async instantiate(data: Object): Promise<User | undefined> {
     try {
@@ -39,11 +42,11 @@ class UserRepository implements IRepository<User> {
     }
   }
 
-  async getAll(): Promise<User[]> {
+  async findAll(): Promise<User[]> {
     return await this.userRepository.find()
   }
 
-  async findOneByID(id: Query<User>): Promise<User | undefined> {
+  async findByID(id: Query<User>): Promise<User | undefined> {
     this.userLogger('Fetching user by id: ', id)
     try {
       if (id) {
