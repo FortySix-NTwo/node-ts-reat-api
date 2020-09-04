@@ -3,11 +3,10 @@ import { Router, AsyncRouter } from 'express-async-router'
 
 import { configApp } from '../config'
 
-const server: Application = express()
-const router: Router = AsyncRouter()
-
 class Server {
   async start() {
+    const server: Application = express()
+    const router: Router = AsyncRouter()
     try {
       await configApp(server, router)
     } catch (error) {

@@ -7,6 +7,7 @@ export const configRouterMiddleware = async (router: Router) => {
   try {
     registerRouterMiddleware(swaggerDocs, router)
     registerRouterMiddleware(routingErrors, router)
+    return router
   } catch (error) {
     throw new Error(error)
   }

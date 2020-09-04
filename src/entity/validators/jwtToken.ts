@@ -3,10 +3,6 @@ import * as jsonwebtoken from 'jsonwebtoken'
 import { config } from '../../config'
 import { User } from '../model/user'
 
-export interface AuthTokenData {
-  email: string
-}
-
 const { jwt_secret } = config
 
 export class AuthToken {

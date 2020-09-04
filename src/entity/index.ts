@@ -1,1 +1,1 @@
-export { compareQuery } from './repository'
+export { User } from './model'

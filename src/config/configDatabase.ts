@@ -1,6 +1,7 @@
 import { createConnection, ConnectionOptions } from 'typeorm'
 import 'reflect-metadata'
 
+import { User } from '../entity'
 import { config, appLogger } from './index'
 
 const { pg_host, pg_port, pg_user, pg_pass, pg_db } = config
@@ -12,7 +13,7 @@ const configORM: ConnectionOptions = {
   username: pg_user,
   password: pg_pass,
   database: pg_db,
-  entities: [__dirname + 'entity/model/**/*{.ts,.js}'],
+  entities: [User],
   migrationsRun: true,
   synchronize: true,
   logging: true,

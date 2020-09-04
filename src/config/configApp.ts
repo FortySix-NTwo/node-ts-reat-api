@@ -1,3 +1,4 @@
+import https from 'https'
 import { Application } from 'express'
 import { Router } from 'express-async-router'
 import 'express-async-errors'
@@ -14,6 +15,7 @@ const { port, host, environment } = config
 
 export const configApp = async (server: Application, router: Router) => {
   try {
+    https.createServer(server)
     process.on('uncaughtException', (error) => {
       appLogger.error({
         message: `uncaught Exception`,
@@ -35,8 +37,6 @@ export const configApp = async (server: Application, router: Router) => {
     server.listen(port, host, () => {
       appLogger.info(`Server Running at http://${host}:${port}`)
     })
-
-    return server
   } catch (error) {
     if (environment === 'development') {
       appLogger.error(`Internal Server Error ${error.stack}`)

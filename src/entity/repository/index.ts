@@ -1,1 +1,1 @@
-export { IRepository, compareQuery } from './IRepository'
+export { default as UserRepository } from './userRepository'

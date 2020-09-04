@@ -1,4 +1,5 @@
 import express, { Application } from 'express'
+import cookieParser from 'cookie-parser'
 import compression from 'compression'
 import cors from 'cors'
 import helmet from 'helmet'
@@ -13,6 +14,9 @@ const RateLimit = (server: Application) => {
   server.use(limit)
 }
 
+const cookieParsing = (server: Application) => {
+  server.use(cookieParser())
+}
 const JSONParsing = (server: Application) => {
   server.use(express.json({ limit: '10kb' }))
 }
@@ -38,4 +42,5 @@ export default [
   HTTPHeaders,
   Cors,
   Compression,
+  cookieParsing,
 ]
