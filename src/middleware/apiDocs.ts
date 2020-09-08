@@ -5,7 +5,7 @@ import swaggerUi from 'swagger-ui-express'
 
 const swaggerDocs = (router: Router) =>
   router.use(
-    '/api-docs',
+    '/api/docs',
     swaggerUi.serve,
     swaggerUi.setup(/* swaggerDocument */)
   )

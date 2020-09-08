@@ -1,7 +1,6 @@
-import { Application } from 'express'
-import { Router, NextFunction } from 'express-async-router'
+import { Router, NextFunction, Request, Response, Application } from 'express'
 
-export type ServerMiddlewareWrapper = (server: Application) => void
+export type ServerMiddlewareWrapper = (application: Application) => any
 
 export type RouterMiddlewareWrapper = (router: Router) => void
 

@@ -11,15 +11,15 @@ const handleCaching = async (
   try {
     const key: string = req.params.key || req.body.key || req.query.key
     if (!key) {
-      throw new HTTP400Error()
+      throw new HTTP400Error('Empty search')
     }
     const result = redisClient.get(key)
     if (!result) {
-      return
+      next()
     }
     res.status(200).send(result)
   } catch (error) {
-    next()
+    throw new Error(error)
   }
 }
 

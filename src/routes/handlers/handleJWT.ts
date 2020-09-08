@@ -19,7 +19,7 @@ const handleAuthorization = (req: Request, next: NextFunction) => {
     jwt.verify(token, jwt_secret)
     next()
   } catch (error) {
-    throw new HTTP401Error()
+    throw new HTTP401Error(error)
   }
 }
 

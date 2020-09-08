@@ -2,7 +2,7 @@ import { Router } from 'express-async-router'
 
 import { RouterMiddlewareWrapper } from '../types'
 
-const registerRouterMiddleware = (
+const registerRouter = (
   wrappers: RouterMiddlewareWrapper[],
   router: Router
 ) => {
@@ -11,4 +11,4 @@ const registerRouterMiddleware = (
   }
 }
 
-export default registerRouterMiddleware
+export default registerRouter

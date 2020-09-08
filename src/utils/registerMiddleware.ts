@@ -2,7 +2,7 @@ import { Application } from 'express'
 
 import { ServerMiddlewareWrapper } from '../types'
 
-const registerServerMiddleware = (
+const registerMiddleware = (
   wrappers: ServerMiddlewareWrapper[],
   server: Application
 ) => {
@@ -11,4 +11,4 @@ const registerServerMiddleware = (
   }
 }
 
-export default registerServerMiddleware
+export default registerMiddleware

@@ -1,36 +1,27 @@
-import { Request, Response } from 'express'
-import { Router } from 'express-async-router'
+import { Request, Response, NextFunction } from 'express'
 
-const reqOptions = (req: Request) => ({
-  path: req.path,
-  methods: req.method,
-  headers: req.headers,
-  host: req.hostname,
-  baseUrl: req.baseUrl,
-  ip: req.ip,
-})
+import { registerHeaders, HTTP400Error } from '../utils'
 
-const resOptions = (res: Response) => ({
-  crossOrigin: res.header('Access-Control-Allow-Origin', '*'),
-  methods: res.header(
-    'Access-Control-Allow-Methods',
-    'GET, POST, DELETE, OPTIONS'
-  ),
-  headers: res.header('Access-Control-Allow-Headers', 'Content-Type'),
-  cache: res.header('Cache-Control', 'no-cache'),
-})
-
-const healthCheck = (router: Router) =>
-  router.use('/api', (req: Request, res: Response) => {
-    const data = reqOptions(req)
-    res
+const healthCheck = async (
+  req: Request,
+  res: Response,
+  next: NextFunction
+): Promise<any> => {
+  try {
+    if (!req) {
+      throw new HTTP400Error()
+    }
+    const headers = await registerHeaders(req)
+    return res
       .status(200)
       .json({
-        headers: resOptions(res),
+        headers,
         message: 'O.K',
-        data,
       })
       .end()
-  })
+  } catch (error) {
+    next(error)
+  }
+}
 
-export default [healthCheck]
+export default healthCheck

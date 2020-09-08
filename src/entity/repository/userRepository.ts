@@ -14,9 +14,6 @@ class UserRepository implements IRepository<User> {
   constructor() {
     this.userRepository = getRepository(User)
   }
-  findOneByID(query: Query<User>): Promise<User | undefined> {
-    throw new Error('Method not implemented.')
-  }
 
   async instantiate(data: Object): Promise<User | undefined> {
     try {

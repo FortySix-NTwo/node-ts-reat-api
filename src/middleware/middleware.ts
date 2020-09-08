@@ -1,38 +1,38 @@
-import express, { Application } from 'express'
+import express, { Router } from 'express'
 import cookieParser from 'cookie-parser'
 import compression from 'compression'
 import cors from 'cors'
 import helmet from 'helmet'
 import rateLimit from 'express-rate-limit'
 
-const RateLimit = (server: Application) => {
+const RateLimit = (router: Router) => {
   const limit = rateLimit({
     max: 50,
     windowMs: 60 * 60 * 1000,
     message: 'Request Limited',
   })
-  server.use(limit)
+  router.use(limit)
 }
 
-const cookieParsing = (server: Application) => {
-  server.use(cookieParser())
+const cookieParsing = (router: Router) => {
+  router.use(cookieParser())
 }
-const JSONParsing = (server: Application) => {
-  server.use(express.json({ limit: '10kb' }))
-}
-
-const BodyParsing = (server: Application) => {
-  server.use(express.urlencoded({ extended: true }))
-  server.use(express.json())
+const JSONParsing = (router: Router) => {
+  router.use(express.json({ limit: '10kb' }))
 }
 
-const HTTPHeaders = (server: Application) => server.use(helmet())
+const BodyParsing = (router: Router) => {
+  router.use(express.urlencoded({ extended: true }))
+  router.use(express.json())
+}
 
-const Cors = (server: Application) =>
-  server.use(cors({ credentials: true, origin: true }))
+const HTTPHeaders = (router: Router) => router.use(helmet())
 
-const Compression = (server: Application) => {
-  server.use(compression())
+const Cors = (router: Router) =>
+  router.use(cors({ credentials: true, origin: true }))
+
+const Compression = (router: Router) => {
+  router.use(compression())
 }
 
 export default [

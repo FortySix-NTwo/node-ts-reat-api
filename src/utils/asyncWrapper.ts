@@ -1,11 +1,13 @@
-import { NextFunction } from 'express-async-router'
+import { Request, Response, NextFunction } from 'express'
 
 import { AsyncFunction } from '../types'
 
-export default (execution: AsyncFunction) => (
+const asyncFunction = (execution: AsyncFunction) => (
   req: Request,
   res: Response,
   next: NextFunction
 ) => {
   execution(req, res, next).catch(next)
 }
+
+export default asyncFunction

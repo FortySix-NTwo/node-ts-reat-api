@@ -6,8 +6,8 @@ const main = async () => {
     const app = new Server()
     await app.start()
   } catch (error) {
-    appLogger.info(error)
+    appLogger.error(error)
+    process.exit(1)
   }
 }
-
 main()
