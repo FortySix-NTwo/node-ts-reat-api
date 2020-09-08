@@ -6,6 +6,7 @@ import { healthCheck } from '../routes'
 
 export const configRouter = async (router: Router) => {
   try {
+    router.use('/', asyncFunction)
     router.get('/api', asyncFunction(healthCheck))
     registerRouter(swaggerDocs, router)
     registerRouter(routingErrors, router)

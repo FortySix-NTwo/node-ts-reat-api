@@ -1,6 +1,6 @@
 import { Request, Response, NextFunction } from 'express'
 
-import { registerHeaders, HTTP400Error } from '../utils'
+import { registerHeaders, HTTP400Error, CacheControl } from '../utils'
 
 const healthCheck = async (
   req: Request,
@@ -11,12 +11,14 @@ const healthCheck = async (
     if (!req) {
       throw new HTTP400Error()
     }
-    const headers = await registerHeaders(req)
+    const { statusCode, statusMessage } = res
     return res
       .status(200)
       .json({
-        headers,
-        message: 'O.K',
+        request: await registerHeaders(req, CacheControl.NO_CACHE),
+        status: statusCode,
+        message: statusMessage,
+        data: 'O.K',
       })
       .end()
   } catch (error) {

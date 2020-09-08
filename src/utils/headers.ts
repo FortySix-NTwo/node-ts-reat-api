@@ -1,24 +1,20 @@
 import { Request } from 'express'
+import { CacheControl } from './verbs'
 
-export const registerHeaders = async (req: Request) => {
-  const { path, method, headers, rawHeaders, hostname, ip } = req
-
-  const cors = ['Access-Control-Allow-Origin', '*']
-  const methods = ['Access-Control-Allow-Methods', `${method}`]
-  const contentType = ['Access-Control-Allow-Headers', 'application/json']
-  const cache = ['Cache-Control', 'non-cache']
-  const header = {
+export const registerHeaders = async (req: Request, cache: CacheControl) => {
+  const { path, method, headers, hostname, ip } = req
+  const contentType = 'application/json'
+  const request = {
     path,
     method,
-    headers,
-    rawHeaders,
     hostname,
     ip,
-    methods,
-    cors,
-    contentType,
-    cache,
+    headers,
+    allowedMethods: ['Access-Control-Allow-Methods', `${method}`],
+    cors: ['Access-Control-Allow-Methods', '*'],
+    contentType: ['Access-Control-Allow-Headers', `${contentType}`],
+    caching: ['Cache-Control', `${cache}`],
   }
 
-  return header
+  return request
 }
