@@ -2,14 +2,14 @@ import express, { Application } from 'express'
 import 'express-async-errors'
 import { Router, AsyncRouter } from 'express-async-router'
 
-import { configServer, configRouter, configDB } from '../config'
+import { configApplication, configRouter, configDB } from '../config'
 
-class Server {
-  private server: Application
+class App {
+  private application: Application
   private router: Router
 
   constructor() {
-    this.server = express()
+    this.application = express()
     this.router = AsyncRouter()
   }
 
@@ -25,12 +25,12 @@ class Server {
     try {
       await configDB()
       await configRouter(this.router)
-      this.server.use(this.router)
-      await configServer(this.server)
+      await this.application.use(this.router)
+      await configApplication(this.application)
     } catch (error) {
       throw new Error(error)
     }
   }
 }
 
-export default Server
+export default App

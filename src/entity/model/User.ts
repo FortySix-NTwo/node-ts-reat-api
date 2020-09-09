@@ -6,10 +6,13 @@ import {
   CreateDateColumn,
   UpdateDateColumn,
   DeleteDateColumn,
+  BeforeInsert,
+  BeforeUpdate,
 } from 'typeorm'
 
 import { Length, IsNotEmpty, IsEmail } from 'class-validator'
 
+import { hashValue } from '../../utils'
 import { IUser } from '../interfaces'
 
 @Entity()
@@ -20,12 +23,12 @@ export class User implements IUser {
 
   @Column()
   @IsNotEmpty()
-  @Length(4, 20)
+  @Length(8, 20)
   fullname: string
 
   @Column()
   @IsNotEmpty()
-  @Length(4, 20)
+  @Length(6, 20)
   username: string
 
   @Column()
@@ -49,4 +52,10 @@ export class User implements IUser {
   @Column()
   @DeleteDateColumn()
   deletedAt: Date
+
+  @BeforeInsert()
+  @BeforeUpdate()
+  hash() {
+    this.hashedValue = hashValue(10, this.hashedValue)
+  }
 }

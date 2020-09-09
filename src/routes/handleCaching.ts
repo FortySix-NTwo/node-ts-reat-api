@@ -1,7 +1,7 @@
 import { Request, Response, NextFunction } from 'express'
 
-import { redisClient } from '../../config'
-import { HTTP400Error } from '../../utils'
+import { redisClient } from '../config'
+import { HTTP400Error } from '../utils'
 
 const handleCaching = async (
   req: Request,
@@ -23,4 +23,4 @@ const handleCaching = async (
   }
 }
 
-export default [handleCaching]
+export default handleCaching

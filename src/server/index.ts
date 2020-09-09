@@ -1,1 +1,2 @@
-export { default as Server } from './server'
+export { default as Socket } from './socket'
+export { default as App } from './app'

@@ -3,10 +3,10 @@ import Sentry from 'winston-transport-sentry-node'
 import * as SentryNode from '@sentry/node'
 
 import { config } from './index'
-
-const { sentry_dsn } = config
+//TODO: change to Factory pattern (i.e abstract builder)
 
 const logger = (): winston.Logger => {
+  const { sentry_dsn } = config
   SentryNode.init({
     dsn: sentry_dsn,
   })

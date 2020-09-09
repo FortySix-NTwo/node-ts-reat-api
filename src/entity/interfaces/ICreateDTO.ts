@@ -2,5 +2,5 @@ export interface ICreateDTO {
   fullname: string
   username: string
   email: string
-  hashedValue: string
+  password: string
 }

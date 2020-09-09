@@ -10,7 +10,10 @@ export const registerHeaders = async (req: Request, cache: CacheControl) => {
     hostname,
     ip,
     headers,
-    allowedMethods: ['Access-Control-Allow-Methods', `${method}`],
+    allowedMethods: [
+      'Access-Control-Allow-Methods',
+      `GET, POST, PATCH, DELETE`,
+    ],
     cors: ['Access-Control-Allow-Methods', '*'],
     contentType: ['Access-Control-Allow-Headers', `${contentType}`],
     caching: ['Cache-Control', `${cache}`],

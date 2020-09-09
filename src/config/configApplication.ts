@@ -1,20 +1,18 @@
-import http from 'http'
 import { Application } from 'express'
 
 import { appLogger, config } from './index'
 import { registerMiddleware } from '../utils'
 import { middleware } from '../middleware'
 
-const { port, host, environment } = config
-
-export const configServer = async (application: Application) => {
+//TODO: change to Factory pattern (i.e builder)
+export const configApplication = async (application: Application) => {
+  const { port, host, environment } = config
   try {
     registerMiddleware(middleware, application)
-    const server = http.createServer(application)
-    server.listen(port, host, () => {
-      appLogger.info(`Server Running at http://${host}:${port}`)
+    application.listen(port, host, () => {
+      appLogger.info(`Server Listening on http://${host}:${port}`)
     })
-    return server
+    return application
   } catch (error) {
     if (environment === 'development') {
       throw new Error(error.stack)

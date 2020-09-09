@@ -1,36 +1,32 @@
 import { getRepository, Repository } from 'typeorm'
 
-import { IRepository } from '../interfaces'
-import { User } from '../model'
-import { Query } from 'types'
-
 import { appLogger } from '../../config'
-import { ICreateDTO } from '../interfaces/ICreateDTO'
+import { User } from '../model'
+import { Query } from '../../types'
+import { IRepository, ICreateDTO } from '../interfaces'
 
 class UserRepository implements IRepository<User> {
-  readonly userRepository: Repository<User>
-  private userLogger = appLogger.info
-
-  constructor() {
-    this.userRepository = getRepository(User)
+  readonly userRepository: Repository<User> = getRepository(User)
+  constructor(userRepository: Repository<User>) {
+    this.userRepository = userRepository
   }
 
   async instantiate(data: Object): Promise<User | undefined> {
     try {
       const user = this.userRepository.create(data)
-      this.userLogger('User instance created')
+      appLogger.info('User instance created')
       return user
     } catch (error) {
       return Promise.reject(error)
     }
   }
 
-  async insert(id: Query<User>, data: ICreateDTO): Promise<User> {
-    this.userLogger('Create a new user', data)
+  async insert(email: Query<User>, data: ICreateDTO): Promise<User> {
+    appLogger.info('Create a new user', data)
     try {
-      const user = await this.userRepository.findOne(id)
+      const user = await this.findByEmail(email)
       if (user) {
-        const newUser = this.userRepository.create(data)
+        const newUser = this.userRepository.save(data)
         return newUser
       }
       return Promise.reject(true)
@@ -43,20 +39,8 @@ class UserRepository implements IRepository<User> {
     return await this.userRepository.find()
   }
 
-  async findByID(id: Query<User>): Promise<User | undefined> {
-    this.userLogger('Fetching user by id: ', id)
-    try {
-      if (id) {
-        return await this.userRepository.findOne(id)
-      }
-      return Promise.reject(false)
-    } catch (error) {
-      return Promise.reject(error)
-    }
-  }
-
   async findByEmail(email: Query<User>): Promise<User | undefined> {
-    this.userLogger('Fetching user by email: ', email)
+    appLogger.info('Fetching user by email: ', email)
     try {
       const users = await this.userRepository.find({
         where: {
@@ -73,10 +57,10 @@ class UserRepository implements IRepository<User> {
     }
   }
 
-  async update(id: Query<User>, data: User): Promise<User | undefined> {
-    this.userLogger('Updating user by id: ', id)
+  async update(email: Query<User>, data: User): Promise<User | undefined> {
+    appLogger.info('Updating user by email: ', email)
     try {
-      const user = await this.userRepository.findOne(id)
+      const user = await this.userRepository.findOneOrFail(email)
       if (user) {
         const updatedUser = await this.userRepository.save(data)
         return updatedUser
@@ -87,10 +71,10 @@ class UserRepository implements IRepository<User> {
     }
   }
 
-  async deleteByID(id: Query<User>, time: Date): Promise<Date | undefined> {
-    this.userLogger('Deleting user by id: ', id)
+  async delete(email: Query<User>, time: Date): Promise<Date | undefined> {
+    appLogger.info('Deleting user by email: ', email)
     try {
-      const user = await this.userRepository.findOne(id)
+      const user = await this.userRepository.findOneOrFail(email)
       if (user) {
         await this.userRepository.delete(user)
         return time

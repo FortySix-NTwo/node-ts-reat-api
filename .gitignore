@@ -3,6 +3,7 @@ node_modules
 
 #__Transpiled JavaScript Files__
 dist/
+tmp/
 
 #__Environment Variables__
 .env.development

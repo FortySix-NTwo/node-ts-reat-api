@@ -5,6 +5,7 @@ import { User } from '../entity'
 import { config, appLogger } from './index'
 
 const { pg_host, pg_port, pg_user, pg_pass, pg_db } = config
+//TODO: change to Factory pattern (i.e builder)
 
 const configORM: ConnectionOptions = {
   type: 'postgres',
@@ -18,7 +19,7 @@ const configORM: ConnectionOptions = {
   synchronize: true,
   logging: true,
   logger: 'file',
-  migrations: [__dirname + 'entity/migrations/**/*{.ts,.js}'],
+  migrations: ['../entity/migrations/'],
   cli: {
     migrationsDir: 'src/entity/migrations',
   },

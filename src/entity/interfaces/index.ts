@@ -1,4 +1,4 @@
-export { IRepository, IExport, IService, validateQuery } from './IRepository'
+export { IRepository, validateQuery } from './IRepository'
 export { IUser } from './IUser'
-export { AuthTokenData } from './jwtToken'
+export { IAuthTokenData } from './IAuthTokenData'
 export { ICreateDTO } from './ICreateDTO'

@@ -26,7 +26,7 @@ const ClientError = (router: Router) => {
         case 'Forbidden':
           err = new HTTP403Error()
           break
-        default:
+        case 'Not Found':
           err = new HTTP404Error()
           break
       }
