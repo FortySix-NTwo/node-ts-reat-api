@@ -7,15 +7,10 @@ import { Query } from 'types'
 
 class UserRepository implements IRepository<User> {
   readonly userRepository: Repository<User>
-
-  query<User>(query: Query<User>, params: User) {
-    return Object.keys(query).every(
-      (key) => query[key as keyof User] === params[key as keyof User]
-    )
-  }
   constructor(userRepository: Repository<User>) {
     this.userRepository = userRepository
   }
+
   public async instantiate(data: Object): Promise<User | undefined> {
     try {
       const user = this.userRepository.create(data)

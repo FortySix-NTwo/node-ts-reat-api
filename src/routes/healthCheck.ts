@@ -15,7 +15,7 @@ const healthCheck = async (
     return res
       .status(200)
       .json({
-        request: await registerHeaders(req, CacheControl.NO_CACHE),
+        request: await registerHeaders(req, CacheControl.ONLY_IF_CACHED),
         status: statusCode,
         message: statusMessage,
         data: 'O.K',

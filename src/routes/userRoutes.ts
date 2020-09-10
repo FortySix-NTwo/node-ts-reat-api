@@ -4,7 +4,7 @@ import { Request, Response, NextFunction } from 'express'
 import { UserController /* AuthController */ } from '../controller'
 import { /* configUpload */ appLogger } from '../config'
 //import { handleAuthorization } from './index'
-import { HTTP400Error, registerHeaders, CacheControl } from '../utils'
+import { HTTP400Error } from '../utils'
 import { ICreateDTO } from '../entity'
 //const upload = multer(configUpload)
 
@@ -14,37 +14,40 @@ const userRouter = async (
   next: NextFunction
 ): Promise<any> => {
   try {
-    if (!req) {
+    if (
+      !req.body.fullName ||
+      !req.body.userName ||
+      !req.body.email ||
+      !req.body.password
+    ) {
       throw new HTTP400Error()
     }
+    const { fullName, userName, email, password } = req.body
     appLogger.info('userRouter')
-    const { fullname, username, email, password } = req.body
 
-    const params: ICreateDTO = {
-      fullname,
-      username,
+    const data: ICreateDTO = {
+      fullname: fullName,
+      username: userName,
       email,
       password,
     }
 
-    const user = await UserController.execute(params)
+    const user = await UserController.execute(data)
     if (!user) {
       throw new Error('Unable to Connect to Database')
     }
     const { statusCode, statusMessage } = res
-    return res
-      .status(200)
-      .json({
-        request: await registerHeaders(req, CacheControl.NO_CACHE),
-        status: statusCode,
-        message: statusMessage,
-        data: user,
-      })
-      .end()
+    res.status(200).json({
+      statusCode,
+      statusMessage,
+      data: user,
+    })
+    return user
   } catch (error) {
     next(error)
   }
 }
+
 // userRouter.patch('/avatar', handleAuthorization, upload.single('avatar') async(request, response): Promise<any> => {
 //  const updateAvatar = new AvatarController()
 //  const user = await updateAvatar.execute({

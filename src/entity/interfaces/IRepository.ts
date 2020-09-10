@@ -8,3 +8,8 @@ export interface IRepository<T> {
   insert(data: T): Promise<T | undefined>
   delete(query: Query<T>, time: Date): Promise<Date | undefined>
 }
+export function query<User>(query: Query<User>, params: User) {
+  return Object.keys(query).every(
+    (key) => query[key as keyof User] === params[key as keyof User]
+  )
+}

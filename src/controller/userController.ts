@@ -4,7 +4,9 @@ import { User, UserRepository, ICreateDTO } from '../entity'
 import { HTTP400Error } from '../utils'
 
 class UserController {
-  public execute = async ({ ...params }: ICreateDTO) => {
+  public execute = async ({
+    ...params
+  }: ICreateDTO): Promise<User | undefined> => {
     try {
       const repository = new UserRepository(getRepository(User))
       const isExists = await repository.findByEmail({ email: params.email })
@@ -12,10 +14,10 @@ class UserController {
         throw new HTTP400Error()
       }
       const newUser = repository.instantiate(params)
+      await repository.insert(newUser)
       if (!newUser) {
         throw new Error('unable to save user')
       }
-      await repository.insert(newUser)
       return newUser
     } catch (error) {
       throw new Error(error)

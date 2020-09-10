@@ -10,7 +10,6 @@ export const configRouter = async (router: Router) => {
   try {
     router.get('/api/v1/', asyncFunction(healthCheck))
     router.post('/api/v1/user/', asyncFunction(userRouter))
-    router.post('/api/v1/auth/')
     registerRouter(swaggerDocs, router)
     registerRouter(routingErrors, router)
     return router

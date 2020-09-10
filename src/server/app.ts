@@ -26,11 +26,12 @@ class App {
 
   private setupServer = async (application: Application, router: Router) => {
     try {
-      await configDB()
-      const server = await configRouter(router)
-        .then((router) => application.use(router))
-        .finally(() => configApplication(application))
-      return server
+      await configDB().then(async () => {
+        const server = await configRouter(router)
+          .then((router) => application.use(router))
+          .finally(() => configApplication(application))
+        return server
+      })
     } catch (error) {
       throw new Error(error)
     }
