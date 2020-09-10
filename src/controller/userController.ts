@@ -1,35 +1,21 @@
 import { getRepository } from 'typeorm'
 
-import { User, UserRepository } from '../entity'
+import { User, UserRepository, ICreateDTO } from '../entity'
 import { HTTP400Error } from '../utils'
-import { ICreateDTO } from '../entity/interfaces/ICreateDTO'
 
 class UserController {
-  public execute = async ({
-    fullname,
-    username,
-    email,
-    password,
-  }: ICreateDTO) => {
+  public execute = async ({ ...params }: ICreateDTO) => {
     try {
       const repository = new UserRepository(getRepository(User))
-      const isExists = await repository.findByEmail({ email })
+      const isExists = await repository.findByEmail({ email: params.email })
       if (isExists) {
         throw new HTTP400Error()
       }
-      const user = await repository.insert(
-        { email },
-        {
-          fullname,
-          username,
-          email,
-          password,
-        }
-      )
-      const newUser = await repository.instantiate(user)
+      const newUser = repository.instantiate(params)
       if (!newUser) {
         throw new Error('unable to save user')
       }
+      await repository.insert(newUser)
       return newUser
     } catch (error) {
       throw new Error(error)

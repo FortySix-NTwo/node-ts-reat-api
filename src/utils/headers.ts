@@ -18,6 +18,5 @@ export const registerHeaders = async (req: Request, cache: CacheControl) => {
     contentType: ['Access-Control-Allow-Headers', `${contentType}`],
     caching: ['Cache-Control', `${cache}`],
   }
-
   return request
 }

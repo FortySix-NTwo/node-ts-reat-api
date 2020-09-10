@@ -2,9 +2,10 @@ import { Request, Response, NextFunction } from 'express'
 //import multer from 'multer'
 
 import { UserController /* AuthController */ } from '../controller'
-//import { configUpload } from '../config'
+import { /* configUpload */ appLogger } from '../config'
 //import { handleAuthorization } from './index'
 import { HTTP400Error, registerHeaders, CacheControl } from '../utils'
+import { ICreateDTO } from '../entity'
 //const upload = multer(configUpload)
 
 const userRouter = async (
@@ -13,32 +14,37 @@ const userRouter = async (
   next: NextFunction
 ): Promise<any> => {
   try {
-    if (
-      !req.body.fullname ||
-      !req.body.username ||
-      !req.body.email ||
-      !req.body.password
-    ) {
+    if (!req) {
       throw new HTTP400Error()
     }
-    const headers = await registerHeaders(req, CacheControl.NO_CACHE)
-    const createUser = await UserController.execute({
-      fullname: req.body.fullname,
-      username: req.body.username,
-      email: req.body.email,
-      password: req.body.password,
-    })
-    return res.json({
-      headers,
-      statusCode: 200,
-      statusMessage: 'O.K',
-      data: createUser,
-    })
+    appLogger.info('userRouter')
+    const { fullname, username, email, password } = req.body
+
+    const params: ICreateDTO = {
+      fullname,
+      username,
+      email,
+      password,
+    }
+
+    const user = await UserController.execute(params)
+    if (!user) {
+      throw new Error('Unable to Connect to Database')
+    }
+    const { statusCode, statusMessage } = res
+    return res
+      .status(200)
+      .json({
+        request: await registerHeaders(req, CacheControl.NO_CACHE),
+        status: statusCode,
+        message: statusMessage,
+        data: user,
+      })
+      .end()
   } catch (error) {
     next(error)
   }
 }
-
 // userRouter.patch('/avatar', handleAuthorization, upload.single('avatar') async(request, response): Promise<any> => {
 //  const updateAvatar = new AvatarController()
 //  const user = await updateAvatar.execute({

@@ -1,7 +1,7 @@
 import http from 'http'
 import express, { Application } from 'express'
 
-import { configSocket, config } from '../config'
+import { SocketServer, config } from '../config'
 
 class Socket {
   private application: Application
@@ -10,26 +10,24 @@ class Socket {
     this.application = express()
   }
 
-  setupSocket = async () => {
+  start = async () => {
     const { ws_endpoint } = config
     const server = http.createServer(this.application)
     try {
-      const socket = await configSocket(server, ws_endpoint)
-      socket.on('connection', (socket) => {
-        socket.addListener('connection', () => {
-          return JSON.stringify(`User Connected from: ${socket.id}`)
-        })
-        return socket
-      })
-      socket.on('disconnect', () => {
-        socket.addListener('disconnect', () => {
-          return JSON.stringify(`User Connected from: ${socket}`)
-        })
-        return socket.close
-      })
+      const socket = new SocketServer(server, ws_endpoint)
       return socket
     } catch (error) {
       throw new Error(error)
+    }
+  }
+
+  Listener(eventName: string) {
+    return function (
+      target: { bindEvent: (arg0: string, arg1: any) => void },
+      _propertyKey: string,
+      descriptor: PropertyDescriptor
+    ) {
+      target.bindEvent(eventName, descriptor.value)
     }
   }
 }

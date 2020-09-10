@@ -1,18 +1,76 @@
 import { Server } from 'http'
-import socketIO from 'socket.io'
-import { appLogger, config } from './index'
+import SocketIO from 'socket.io'
+import SocketRedisAdapter from 'socket.io-redis'
+import SocketIOWildcard from 'socketio-wildcard'
 
-//TODO: change to Factory pattern (i.e builder)
-export const configSocket = async (server: Server, path: string) => {
+import { SocketController, SocketAuthorizationHandler } from '../controller'
+import { config, appLogger, redisClient } from './index'
+
+const configSocket = (server: Server, path: string) => {
   const { ws_port, host } = config
-  try {
-    const socket: socketIO.Server = socketIO(server, {
-      path,
-    })
-    socket.listen(ws_port)
-    appLogger.info(`Socket Running on http://${host}:${ws_port}`)
-    return socket
-  } catch (error) {
-    throw new Error(error)
+  const socket: SocketIO.Server = SocketIO(server, {
+    path: path,
+  })
+  socket.listen(ws_port)
+  appLogger.info(`Socket Running on http://${host}:${ws_port}`)
+  return socket
+}
+
+export class SocketServer {
+  public server: Server
+  public path: string
+  protected io: SocketIO.Server
+
+  constructor(server: Server, path: string) {
+    this.server = server
+    this.path = path
+    this.io = configSocket(this.server, this.path)
+    appLogger.debug('Socket service bound to Socket.io instance')
+    if (!this.io) {
+      throw new Error('Can not establish a connection')
+    }
+    this.io.use(SocketIOWildcard())
+    if (redisClient) {
+      appLogger.debug(
+        'Socket service initializing Redis adapter for sticky sessions...'
+      )
+      this.io.adapter(
+        SocketRedisAdapter({
+          pubClient: redisClient,
+          subClient: redisClient,
+        })
+      )
+    }
+    this.io.on('connection', this.onConnect.bind(this))
+  }
+
+  protected onConnect(socket: SocketIO.Socket) {
+    const info = { id: socket.id } as any
+    appLogger.silly('Socket client connected', info)
+    socket.on('error', this.onError.bind(this, socket))
+    socket.on('disconnect', this.onDisconnect.bind(this, socket))
+    for (const listener of [SocketController] || []) {
+      appLogger.silly(
+        `Biding socket client to "${listener.name}" listener`,
+        info
+      )
+      listener.bindSocket(socket)
+    }
+  }
+
+  protected onDisconnect(socket: SocketIO.Socket) {
+    const info = { id: socket.id } as any
+    appLogger.silly('Socket client disconnected', info)
+  }
+
+  public async onError(error: Error): Promise<void> {
+    appLogger.error(`Unknown socket error: ${error.message}`, error)
+  }
+
+  public setAuthorizationHandler(handler: SocketAuthorizationHandler) {
+    ;(this.io as any).set(
+      'authorization',
+      handler.onAuthorization.bind(handler)
+    )
   }
 }

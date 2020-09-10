@@ -1,6 +1,6 @@
 export { default as config } from './config'
 export { default as configUpload } from './configUpload'
-export { configSocket } from './configSocket'
+export { SocketServer } from './configSocket'
 export { configDB } from './configDatabase'
 export { configRouter } from './configRouter'
 export { configApplication } from './configApplication'
