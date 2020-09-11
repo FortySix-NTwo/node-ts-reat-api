@@ -1,4 +1,4 @@
-import { Query } from '../../types'
+import { Query } from '../../@types'
 
 export interface IRepository<T> {
   findAll(): Promise<T[]>

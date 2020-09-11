@@ -1,9 +1,9 @@
 import { Application } from 'express'
 
-import { ServerMiddlewareWrapper } from '../types'
+import { MiddlewareWrapper } from '../@types'
 
 const registerMiddleware = (
-  wrappers: ServerMiddlewareWrapper[],
+  wrappers: MiddlewareWrapper[],
   server: Application
 ) => {
   for (const wrapper of wrappers) {

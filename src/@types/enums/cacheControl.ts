@@ -1,10 +1,3 @@
-export enum Method {
-  GET = 'get',
-  POST = 'post',
-  PUT = 'put',
-  DELETE = 'delete',
-}
-
 export enum CacheControl {
   MAX__AGE = 'max-age=',
   MAX_STALE = 'max-stale=',

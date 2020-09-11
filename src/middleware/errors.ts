@@ -2,35 +2,32 @@ import { Router } from 'express-async-router'
 import { Request, Response, NextFunction } from 'express'
 
 import {
-  HTTP401Error,
-  HTTP403Error,
-  HTTP400Error,
-  HTTP404Error,
+  HTTPErrors,
   notFoundError,
-  clientError,
   serverError,
-} from '../utils'
+  httpErrorAdapter,
+} from '../adapters'
 
-import { ErrorWithCode } from '../types'
+import { ErrorWithCode } from '../@types'
 
-const ClientError = (router: Router) => {
+const errors = (router: Router) => {
   router.use(
     (err: ErrorWithCode, _req: Request, res: Response, next: NextFunction) => {
       switch (err.code) {
         case 'Bad Request':
-          err = new HTTP400Error()
+          err = new HTTPErrors.HTTP400Error()
           break
         case 'Unauthorized':
-          err = new HTTP401Error()
+          err = new HTTPErrors.HTTP401Error()
           break
         case 'Forbidden':
-          err = new HTTP403Error()
+          err = new HTTPErrors.HTTP403Error()
           break
         case 'Not Found':
-          err = new HTTP404Error()
+          err = new HTTPErrors.HTTP404Error()
           break
       }
-      clientError(err, res, next)
+      httpErrorAdapter(err, res, next)
     }
   )
 }
@@ -42,9 +39,9 @@ const NotFoundError = (router: Router) => {
 }
 
 const ServerError = (router: Router) => {
-  router.use((err: Error, _req: Request, res: Response, next: NextFunction) => {
-    serverError(err, res, next)
+  router.use((_req: Request, _res: Response) => {
+    serverError()
   })
 }
 
-export default [NotFoundError, ClientError, ServerError]
+export default [errors, NotFoundError, ServerError]

@@ -3,7 +3,7 @@ import { Repository } from 'typeorm'
 import { appLogger } from '../../config'
 import { User } from '../model'
 import { IRepository } from '../interfaces'
-import { Query } from 'types'
+import { Query } from '@types'
 
 class UserRepository implements IRepository<User> {
   readonly userRepository: Repository<User>

@@ -1,6 +1,6 @@
 import { Request, Response, NextFunction } from 'express'
 
-import { AsyncFunction } from '../types'
+import { AsyncFunction } from '../@types'
 
 const asyncFunction = (execution: AsyncFunction) => (
   req: Request,

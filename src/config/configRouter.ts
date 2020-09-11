@@ -2,7 +2,7 @@ import { Router } from 'express'
 
 import { registerRouter, asyncFunction } from '../utils'
 import { routingErrors, swaggerDocs } from '../middleware'
-import { healthCheck, userRouter } from '../routes'
+import { healthCheck, userRouter } from '../router'
 
 //TODO: change to Factory pattern (i.e builder)
 

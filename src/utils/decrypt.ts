@@ -1,6 +1,6 @@
 import * as bcrypt from 'bcryptjs'
 
-export const validateHash = (password: string, hash: string): boolean => {
-  const isValid = bcrypt.compareSync(password, hash)
+export const validateHash = async (password: string, hash: string): boolean => {
+  const isValid = await bcrypt.compare(password, hash)
   return isValid
 }

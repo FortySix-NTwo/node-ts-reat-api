@@ -1,6 +1,6 @@
 import express, { Application } from 'express'
-import 'express-async-errors'
 import { Router, AsyncRouter } from 'express-async-router'
+import 'express-async-errors'
 import 'reflect-metadata'
 
 import { configApplication, configRouter, configDB, configORM } from '../config'
