@@ -1,20 +1,17 @@
 import http from 'http'
-import express, { Application } from 'express'
 
-import { SocketServer, config } from '../config'
+import { SocketServer } from '../config'
 
 class Socket {
-  private application: Application
+  private server: http.Server
 
   constructor() {
-    this.application = express()
+    this.server = new http.Server()
   }
 
   start = async () => {
-    const { ws_endpoint } = config
-    const server = http.createServer(this.application)
     try {
-      const socket = new SocketServer(server, ws_endpoint)
+      const socket = new SocketServer(this.server)
       return socket
     } catch (error) {
       throw new Error(error)

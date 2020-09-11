@@ -1,51 +1,42 @@
-import { Request, Response, NextFunction } from 'express'
+import { Router } from 'express'
 //import multer from 'multer'
 
 import { UserController /* AuthController */ } from '../controller'
-import { /* configUpload */ appLogger } from '../config'
+// import {configUpload, appLogger } from '../config'
 //import { handleAuthorization } from './index'
 import { HTTP400Error } from '../utils'
 import { ICreateDTO } from '../entity'
 //const upload = multer(configUpload)
 
-const userRouter = async (
-  req: Request,
-  res: Response,
-  next: NextFunction
-): Promise<any> => {
-  try {
-    if (
-      !req.body.fullName ||
-      !req.body.userName ||
-      !req.body.email ||
-      !req.body.password
-    ) {
-      throw new HTTP400Error()
+const userRouter = (router: Router) => {
+  router.post(
+    '/api/v1/user',
+    async (req, res, next): Promise<any> => {
+      try {
+        const data: ICreateDTO = {
+          fullname: req.body.fullname,
+          username: req.body.username,
+          email: req.body.email,
+          password: req.body.password,
+        }
+        if (!data) {
+          throw new HTTP400Error()
+        }
+        const user = await UserController.execute(data)
+        if (!user) {
+          throw new Error('Unable to Connect to Database')
+        }
+        const { statusCode, statusMessage } = res
+        return res.status(200).json({
+          statusCode,
+          statusMessage,
+          data: user,
+        })
+      } catch (error) {
+        next(error)
+      }
     }
-    const { fullName, userName, email, password } = req.body
-    appLogger.info('userRouter')
-
-    const data: ICreateDTO = {
-      fullname: fullName,
-      username: userName,
-      email,
-      password,
-    }
-
-    const user = await UserController.execute(data)
-    if (!user) {
-      throw new Error('Unable to Connect to Database')
-    }
-    const { statusCode, statusMessage } = res
-    res.status(200).json({
-      statusCode,
-      statusMessage,
-      data: user,
-    })
-    return user
-  } catch (error) {
-    next(error)
-  }
+  )
 }
 
 // userRouter.patch('/avatar', handleAuthorization, upload.single('avatar') async(request, response): Promise<any> => {
@@ -58,4 +49,4 @@ const userRouter = async (
 //  return response.json(user)
 // })
 
-export default userRouter
+export default [userRouter]

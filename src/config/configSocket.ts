@@ -6,6 +6,8 @@ import SocketIOWildcard from 'socketio-wildcard'
 import { SocketController, SocketAuthorizationHandler } from '../controller'
 import { config, appLogger, redisClient } from './index'
 
+const { ws_endpoint } = config
+
 const configSocket = (server: Server, path: string) => {
   const { ws_port, host } = config
   const socket: SocketIO.Server = SocketIO(server, {
@@ -18,12 +20,12 @@ const configSocket = (server: Server, path: string) => {
 
 export class SocketServer {
   public server: Server
-  public path: string
+  protected path: string
   protected io: SocketIO.Server
 
-  constructor(server: Server, path: string) {
+  constructor(server: Server) {
     this.server = server
-    this.path = path
+    this.path = ws_endpoint
     this.io = configSocket(this.server, this.path)
     appLogger.debug('Socket service bound to Socket.io instance')
     if (!this.io) {

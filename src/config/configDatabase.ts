@@ -1,32 +1,50 @@
-import { createConnection, ConnectionOptions } from 'typeorm'
-import 'reflect-metadata'
+import { createConnection, Connection } from 'typeorm'
 
 import { User } from '../entity'
 import { config, appLogger } from './index'
+import { PostgresConnectionOptions } from 'typeorm/driver/postgres/PostgresConnectionOptions'
 
-//TODO: change to Factory pattern (i.e builder)
-export const configDB = async () => {
-  const { pg_host, pg_port, pg_user, pg_pass, pg_db } = config
-  const configORM: ConnectionOptions = {
-    type: 'postgres',
-    host: pg_host,
-    port: pg_port,
-    username: pg_user,
-    password: pg_pass,
-    database: pg_db,
-    entities: [User],
-    migrationsRun: true,
-    synchronize: true,
-    logging: true,
-    logger: 'file',
-    migrations: ['src/entity/migrations'],
-    cli: {
-      migrationsDir: 'src/entity/migrations',
-    },
-  }
+const {
+  typeorm_connection,
+  typeorm_entities_dir,
+  typeorm_host,
+  typeorm_logging,
+  typeorm_logger,
+  typeorm_migrations,
+  typeorm_migrations_dir,
+  typeorm_password,
+  typeorm_database,
+  typeorm_port,
+  typeorm_synchronize,
+  typeorm_user,
+} = config
+
+export const configORM: PostgresConnectionOptions = {
+  type: typeorm_connection as 'postgres',
+  host: typeorm_host,
+  port: typeorm_port,
+  username: typeorm_user,
+  password: typeorm_password,
+  database: typeorm_database,
+  entities: [User],
+  migrationsRun: typeorm_synchronize,
+  synchronize: typeorm_synchronize,
+  logging: typeorm_logging,
+  logger: typeorm_logger as 'file',
+  migrations: [typeorm_migrations],
+  cli: {
+    migrationsDir: typeorm_migrations_dir,
+    entitiesDir: typeorm_entities_dir,
+  },
+}
+
+export const configDB = async (
+  config: PostgresConnectionOptions
+): Promise<Connection> => {
   try {
-    await createConnection(configORM)
+    const db = await createConnection(config)
     appLogger.info(`Postgres database connected`)
+    return db
   } catch (error) {
     throw new Error(error)
   }

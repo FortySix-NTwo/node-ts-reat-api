@@ -1,7 +1,7 @@
 export { default as config } from './config'
 export { default as configUpload } from './configUpload'
 export { SocketServer } from './configSocket'
-export { configDB } from './configDatabase'
+export { configDB, configORM } from './configDatabase'
 export { configRouter } from './configRouter'
 export { configApplication } from './configApplication'
 export { appLogger } from './configLogger'

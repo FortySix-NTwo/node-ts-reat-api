@@ -1,8 +1,9 @@
 import express, { Application } from 'express'
 import 'express-async-errors'
 import { Router, AsyncRouter } from 'express-async-router'
+import 'reflect-metadata'
 
-import { configApplication, configRouter, configDB } from '../config'
+import { configApplication, configRouter, configDB, configORM } from '../config'
 
 class App {
   private application: Application
@@ -15,23 +16,23 @@ class App {
 
   start = async () => {
     try {
-      const app = this.application
-      const router = this.router
-      const server = await this.setupServer(app, router)
+      const server = await this.setupServer(this.application, this.router)
       return server
     } catch (error) {
       throw new Error(error)
     }
   }
 
-  private setupServer = async (application: Application, router: Router) => {
+  private setupServer = async (
+    application: Application,
+    router: Router
+  ): Promise<Application> => {
     try {
-      await configDB().then(async () => {
-        const server = await configRouter(router)
-          .then((router) => application.use(router))
-          .finally(() => configApplication(application))
-        return server
-      })
+      await configDB(configORM)
+      const server = await configRouter(router)
+        .then((router) => application.use(router))
+        .finally(() => configApplication(application))
+      return server
     } catch (error) {
       throw new Error(error)
     }
