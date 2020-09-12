@@ -1,6 +1,6 @@
 import * as dotenv from 'dotenv'
 import { injectable } from 'inversify'
-import { isNullOrWhitespace } from '../wrappers'
+import { isNullOrWhitespace } from '../utils'
 
 @injectable()
 export class Config {
@@ -17,8 +17,8 @@ export class Config {
     return this._APPLICATION_HOST
   }
 
-  private _JWT_EXP: string
-  public get jwt_exp(): string {
+  private _JWT_EXP: number
+  public get jwt_exp(): number {
     return this._JWT_EXP
   }
 
@@ -143,7 +143,7 @@ export class Config {
     const variables = {
       app_host: String(process.env.APPLICATION_HOST),
       app_port: Number(process.env.APPLICATION_PORT),
-      jwt_exp: String(process.env.JWT_EXP),
+      jwt_exp: Number(process.env.JWT_EXP),
       jwt_secret: String(process.env.JWT_SECRET),
       logger_exceptions: Boolean(process.env.LOGGER_EXCEPTIONS),
       node_environment: String(process.env.NODE_ENVIRONMENT),

@@ -4,7 +4,7 @@ import multer from 'multer'
 
 const UPLOAD_FOLDER = path.resolve(__dirname, '..', '..', 'tmp')
 
-export default {
+export const store = {
   storage: multer.diskStorage({
     destination: UPLOAD_FOLDER,
     filename(_request, file, callback) {

@@ -3,9 +3,13 @@ import { Router, AsyncRouter } from 'express-async-router'
 import 'express-async-errors'
 import 'reflect-metadata'
 
-import { configApplication, configRouter, configDB, configORM } from '../config'
+import {
+  connectionAdapter,
+  routerAdapter,
+  middlewareAdapter,
+} from '../adapters/'
 
-class App {
+export default class App {
   private application: Application
   private router: Router
 
@@ -16,6 +20,7 @@ class App {
 
   start = async () => {
     try {
+      await connectionAdapter
       const server = await this.setupServer(this.application, this.router)
       return server
     } catch (error) {
@@ -28,15 +33,12 @@ class App {
     router: Router
   ): Promise<Application> => {
     try {
-      await configDB(configORM)
-      const server = await configRouter(router)
+      const server = await routerAdapter(router)
         .then((router) => application.use(router))
-        .finally(() => configApplication(application))
+        .finally(() => middlewareAdapter.configApplication(application))
       return server
     } catch (error) {
       throw new Error(error)
     }
   }
 }
-
-export default App

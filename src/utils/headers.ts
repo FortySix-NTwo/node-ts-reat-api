@@ -1,5 +1,5 @@
 import { Request } from 'express'
-import { CacheControl } from './verbs'
+import { CacheControl } from '../types'
 
 export const registerHeaders = async (req: Request, cache: CacheControl) => {
   const { path, method, headers, ip } = req

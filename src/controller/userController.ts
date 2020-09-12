@@ -1,7 +1,7 @@
 import { getRepository } from 'typeorm'
 
 import { User, UserRepository, ICreateDTO } from '../entity'
-import { HTTP400Error } from '../utils'
+import { HTTP400Error } from '../adapters'
 
 class UserController {
   public execute = async ({

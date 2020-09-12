@@ -1,8 +1,10 @@
 import { Request, Response, NextFunction } from 'express'
 
-import { registerHeaders, HTTP400Error, CacheControl } from '../utils'
+import { HTTP400Error } from '../adapters'
+import { CacheControl } from '../types'
+import { registerHeaders } from '../utils'
 
-const healthCheck = async (
+const healthRouter = async (
   req: Request,
   res: Response,
   next: NextFunction
@@ -26,4 +28,4 @@ const healthCheck = async (
   }
 }
 
-export default healthCheck
+export default healthRouter

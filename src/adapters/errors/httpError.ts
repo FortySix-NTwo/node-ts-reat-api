@@ -1,38 +1,37 @@
 import { HTTPError } from './index'
 
-class HTTP400Error extends HTTPError {
-  readonly statusCode = 400
-  constructor(message: string | object = 'Bad Request') {
-    super(message, 400)
+export class HTTP400Error extends HTTPError {
+  constructor(message: string | object = 'Bad Request', status: number = 400) {
+    super(message, status)
   }
 }
 
-class HTTP401Error extends HTTPError {
-  readonly statusCode = 401
-  constructor(message: string | object = 'Unauthorized') {
-    super(message, 401)
+export class HTTP401Error extends HTTPError {
+  constructor(message: string | object = 'Unauthorized', status: number = 401) {
+    super(message, status)
   }
 }
 
-class HTTP403Error extends HTTPError {
-  readonly statusCode = 403
-  constructor(message: string | object = 'Forbidden') {
-    super(message, 403)
+export class HTTP403Error extends HTTPError {
+  constructor(message: string | object = 'Forbidden', status: number = 403) {
+    super(message, status)
   }
 }
 
-class HTTP404Error extends HTTPError {
-  readonly statusCode = 404
-  constructor(message: string | object = 'Method Not found') {
-    super(message, 404)
+export class HTTP404Error extends HTTPError {
+  constructor(
+    message: string | object = 'Method Not found',
+    status: number = 404
+  ) {
+    super(message, status)
   }
 }
 
-class HTTP500Error extends HTTPError {
-  readonly statusCode = 500
-  constructor(message: string | object = 'Internal Server Error') {
-    super(message, 500)
+export class HTTP500Error extends HTTPError {
+  constructor(
+    message: string | object = 'Internal Server Error',
+    status: number = 500
+  ) {
+    super(message, status)
   }
 }
-
-export { HTTP400Error, HTTP401Error, HTTP403Error, HTTP404Error, HTTP500Error }

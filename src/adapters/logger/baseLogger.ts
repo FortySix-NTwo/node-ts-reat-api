@@ -6,15 +6,17 @@ import { injectable, inject } from 'inversify'
 import { Config } from '../../config'
 
 @injectable()
-export abstract class BaseLogger {
+export class BaseLogger {
   @inject(Config) private readonly config: Config
-
-  public abstract type: string
-
+  public label: string
   private sentry() {
     SentryNode.init({
       dsn: this.config.sentry_dsn,
     })
+  }
+
+  constructor(label: string) {
+    this.label = label
   }
 
   public init(): winston.Logger {
@@ -23,7 +25,10 @@ export abstract class BaseLogger {
       format: winston.format.combine(
         winston.format.prettyPrint(),
         winston.format.simple(),
-        winston.format.label(),
+        winston.format.label({
+          label: this.label,
+          message: true,
+        }),
         winston.format.colorize({
           colors: {
             info: 'green',

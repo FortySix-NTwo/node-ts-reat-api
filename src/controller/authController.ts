@@ -1,18 +1,24 @@
 import { Response } from 'express'
 import jwt from 'jsonwebtoken'
+import { inject, injectable } from 'inversify'
 
-import { config } from '../config'
+import { Config } from '../config'
 import { UserRepository } from '../entity'
-import { validateHash, HTTP401Error } from '../utils'
+import { validateHash } from '../utils'
 import { getRepository } from 'typeorm'
 import { User, ICreateDTO } from '../entity'
-
-const { jwt_secret } = config
+import { HTTP401Error } from '../adapters'
+import { BaseController } from './baseController'
 
 interface Request extends ICreateDTO {}
 
-class AuthController {
-  authenticate = async (req: Request, res: Response) => {
+@injectable()
+export class AuthController extends BaseController {
+  @inject(Config) private readonly config: Config
+  public initializeRoutes(): void {
+    throw new Error('Method not implemented.')
+  }
+  public async validate(req: Request, res: Response) {
     const repository = new UserRepository(getRepository(User))
     const user = await repository.findByEmail({ email: req.email })
     if (!user) {
@@ -24,7 +30,7 @@ class AuthController {
       return new HTTP401Error()
     }
 
-    const token = jwt.sign({}, jwt_secret, {
+    const token = jwt.sign({}, this.config.jwt_secret, {
       subject: user.email,
       expiresIn: '1d',
     })
@@ -34,5 +40,3 @@ class AuthController {
     })
   }
 }
-
-export default new AuthController()

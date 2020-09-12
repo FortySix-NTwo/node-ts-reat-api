@@ -1,5 +1,5 @@
 import SocketIO from 'socket.io'
-import { HTTP400Error } from '../utils'
+import { HTTP400Error } from '../adapters'
 
 export class SocketController {
   protected static methods: { [key: string]: (...args: any) => any } = {}

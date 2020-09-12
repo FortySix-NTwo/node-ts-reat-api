@@ -1,12 +1,13 @@
 import { Repository } from 'typeorm'
 
-import { appLogger } from '../../config'
+import { BaseLogger } from '../../adapters'
 import { User } from '../model'
-import { IRepository } from '../interfaces'
-import { Query } from '@types'
+import { IRepository } from '../dto'
+import { Query } from 'types'
 
 class UserRepository implements IRepository<User> {
-  readonly userRepository: Repository<User>
+  private readonly userRepository: Repository<User>
+  private readonly userLogger = new BaseLogger('userLogger').init()
   constructor(userRepository: Repository<User>) {
     this.userRepository = userRepository
   }
@@ -14,7 +15,7 @@ class UserRepository implements IRepository<User> {
   public async instantiate(data: Object): Promise<User | undefined> {
     try {
       const user = this.userRepository.create(data)
-      appLogger.info('User instance created')
+      this.userLogger.info('User instance created')
       return user
     } catch (error) {
       return Promise.reject(error)
@@ -22,7 +23,7 @@ class UserRepository implements IRepository<User> {
   }
 
   public async insert(data: Object): Promise<User | undefined> {
-    appLogger.info('Create a new user', data)
+    this.userLogger.info('Create a new user', data)
     try {
       const newUser = this.userRepository.save(data)
       return newUser
@@ -36,7 +37,7 @@ class UserRepository implements IRepository<User> {
   }
 
   public async findByEmail(email: Query<User>): Promise<User | undefined> {
-    appLogger.info('Fetching user by email: ', email)
+    this.userLogger.info('Fetching user by email: ', email)
     try {
       const users = await this.userRepository.find({
         where: {
@@ -57,7 +58,7 @@ class UserRepository implements IRepository<User> {
     email: Query<User>,
     data: User
   ): Promise<User | undefined> {
-    appLogger.info('Updating user by email: ', email)
+    this.userLogger.info('Updating user by email: ', email)
     try {
       const user = await this.userRepository.findOneOrFail(email)
       if (user) {
@@ -74,7 +75,7 @@ class UserRepository implements IRepository<User> {
     email: Query<User>,
     time: Date
   ): Promise<Date | undefined> {
-    appLogger.info('Deleting user by email: ', email)
+    this.userLogger.info('Deleting user by email: ', email)
     try {
       const user = await this.userRepository.findOneOrFail(email)
       if (user) {

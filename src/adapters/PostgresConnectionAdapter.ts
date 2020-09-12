@@ -4,12 +4,14 @@ import { injectable, inject } from 'inversify'
 
 import { User } from '../entity'
 import { Config } from '../config'
-import { AppLogger } from '../adapters'
+import { BaseLogger } from '../adapters'
 
 @injectable()
-export class PostgresConnectionAdapter {
+export class ConnectionAdapter {
   @inject(Config) private readonly config: Config
-  private readonly dbLogger = new AppLogger().init()
+  @inject(BaseLogger) private readonly DBLogger = new BaseLogger(
+    'DBLogger'
+  ).init()
   public connect = async (): Promise<Connection> => {
     const configORM: PostgresConnectionOptions = {
       type: this.config.typeorm_connection as 'postgres',
@@ -31,7 +33,7 @@ export class PostgresConnectionAdapter {
     }
     try {
       const db = await createConnection(configORM)
-      this.dbLogger.info(`Postgres database connected`)
+      this.DBLogger.info(`Postgres database connected`)
       return db
     } catch (error) {
       throw new Error(error)
@@ -39,4 +41,4 @@ export class PostgresConnectionAdapter {
   }
 }
 
-export const ormConnection = new PostgresConnectionAdapter().connect()
+export const connectionAdapter = new ConnectionAdapter().connect()

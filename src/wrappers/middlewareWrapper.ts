@@ -1,6 +1,6 @@
 import { Application } from 'express'
 
-import { MiddlewareWrapper } from '../@types'
+import { MiddlewareWrapper } from '../types'
 
 const registerMiddleware = (
   wrappers: MiddlewareWrapper[],

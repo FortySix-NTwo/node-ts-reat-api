@@ -1,22 +1,36 @@
 import { Application } from 'express'
+import { injectable, inject } from 'inversify'
 
-import { appLogger, config } from './index'
-import { registerMiddleware } from '../utils'
+import { Config } from '../config'
+import { registerMiddleware } from '../wrappers/'
 import { middleware } from '../middleware'
+import { BaseLogger } from './logger'
 
-//TODO: change to Factory pattern (i.e builder)
-export const configApplication = async (application: Application) => {
-  const { port, host, environment } = config
-  try {
-    registerMiddleware(middleware, application)
-    application.listen(port, host, () => {
-      appLogger.info(`Server Listening on http://${host}:${port}`)
-    })
-    return application
-  } catch (error) {
-    if (environment === 'development') {
-      throw new Error(error.stack)
+@injectable()
+class MiddlewareAdapter {
+  @inject(Config) private readonly config: Config
+  @inject(BaseLogger) private readonly appLogger = new BaseLogger(
+    'appLogger'
+  ).init()
+
+  configApplication = async (
+    application: Application
+  ): Promise<Application> => {
+    try {
+      registerMiddleware(middleware, application)
+      application.listen(this.config.app_port, this.config.app_host, () => {
+        this.appLogger.info(
+          `Server Listening on http://${this.config.app_host}:${this.config.app_port}`
+        )
+      })
+      return application
+    } catch (error) {
+      if (this.config.node_environment === 'development') {
+        throw new Error(error.stack)
+      }
+      throw new Error(error)
     }
-    throw new Error(error)
   }
 }
+
+export const middlewareAdapter = new MiddlewareAdapter()

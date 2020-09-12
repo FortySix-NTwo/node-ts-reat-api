@@ -1,6 +1,6 @@
 import http from 'http'
 
-import { SocketServer } from '../config'
+import { SocketAdapter } from '../adapters'
 
 class Socket {
   private server: http.Server
@@ -11,7 +11,7 @@ class Socket {
 
   start = async () => {
     try {
-      const socket = new SocketServer(this.server)
+      const socket = new SocketAdapter(this.server)
       return socket
     } catch (error) {
       throw new Error(error)

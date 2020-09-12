@@ -13,7 +13,7 @@ import {
 import { Length, IsNotEmpty, IsEmail } from 'class-validator'
 
 import { hashValue } from '../../utils'
-import { IUser } from '../interfaces'
+import { IUser } from '../dto'
 
 @Entity()
 @Unique(['email'])
@@ -55,7 +55,7 @@ export class User implements IUser {
 
   @BeforeInsert()
   @BeforeUpdate()
-  hash() {
-    this.hashedValue = hashValue(10, this.hashedValue)
+  async hash() {
+    this.hashedValue = await hashValue(10, this.hashedValue)
   }
 }

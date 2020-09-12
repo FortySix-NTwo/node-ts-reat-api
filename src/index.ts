@@ -1,7 +1,8 @@
 import { App, Socket } from './server'
-import { appLogger } from './config'
+import { BaseLogger } from './adapters'
 
 const main = async () => {
+  const appLogger = new BaseLogger('appLogger').init()
   try {
     const app = await new App().start()
     const socket = await new Socket().start()

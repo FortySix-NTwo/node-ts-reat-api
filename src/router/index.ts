@@ -1,4 +1,3 @@
-export { default as handleCaching } from './handleCaching'
-export { default as handleAuthorization } from './handleJWT'
-export { default as healthCheck } from './healthCheck'
+export * from './handlers'
+export { default as healthRouter } from './healthRouter'
 export { default as userRouter } from './userRoutes'
