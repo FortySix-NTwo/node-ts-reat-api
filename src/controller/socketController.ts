@@ -1,5 +1,5 @@
 import SocketIO from 'socket.io'
-import { HTTP400Error } from '../adapters'
+import { HTTPErrors } from '../adapters'
 
 export class SocketController {
   protected static methods: { [key: string]: (...args: any) => any } = {}
@@ -17,8 +17,9 @@ export class SocketController {
     this.methods = this.methods || {}
 
     if (this.methods[eventName]) {
-      throw new HTTP400Error(
-        'Event is already bound in this controller for another listener'
+      throw new HTTPErrors(
+        'Event is already bound in this controller for another listener',
+        400
       )
     }
 

@@ -1,18 +1,18 @@
 import express, { Application } from 'express'
 import { Router, AsyncRouter } from 'express-async-router'
 import 'express-async-errors'
-import 'reflect-metadata'
 
 import {
   connectionAdapter,
   routerAdapter,
   middlewareAdapter,
-} from '../adapters/'
+  HTTPErrors,
+} from '../adapters'
 
 export default class App {
-  private application: Application
-  private router: Router
-
+  private readonly application: Application
+  private readonly router: Router
+  private server: Application
   constructor() {
     this.application = express()
     this.router = AsyncRouter()
@@ -20,11 +20,12 @@ export default class App {
 
   start = async () => {
     try {
-      await connectionAdapter
-      const server = await this.setupServer(this.application, this.router)
-      return server
+      this.server = await connectionAdapter.then(
+        async () => await this.setupServer(this.application, this.router)
+      )
+      return this.server
     } catch (error) {
-      throw new Error(error)
+      throw new HTTPErrors(error, 500)
     }
   }
 
@@ -33,12 +34,15 @@ export default class App {
     router: Router
   ): Promise<Application> => {
     try {
-      const server = await routerAdapter(router)
-        .then((router) => application.use(router))
-        .finally(() => middlewareAdapter.configApplication(application))
-      return server
+      this.server = await routerAdapter(router)
+        .then(() => application.use(router))
+        .finally(
+          async () =>
+            await middlewareAdapter(this.application).configApplication()
+        )
+      return this.server
     } catch (error) {
-      throw new Error(error)
+      throw new HTTPErrors(error, 500)
     }
   }
 }

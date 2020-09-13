@@ -1,22 +1,16 @@
-import { injectable, inject } from 'inversify'
-
-import { BaseLogger } from '../adapters'
+import { Logger } from '../adapters'
 import { TokenProviderService } from './index'
 import { User } from '../entity'
-import { Config } from '../config'
+import { options } from '../config'
 import { TokenInfo, TokenData } from '../types'
 import { tokenWrapper } from '../wrappers'
-import { HTTP400Error } from '../adapters'
+import { HTTPErrors } from '../adapters'
 
-@injectable()
 export class TokenService {
-  @inject(Config) private readonly config: Config
-  @inject(TokenProviderService)
+  private readonly config = options
   private readonly tokenProvider: TokenProviderService
-  @inject(BaseLogger) private readonly authLogger = new BaseLogger(
-    'authLogger'
-  ).init()
-  @inject(tokenWrapper) private readonly jwt: tokenWrapper
+  private readonly logger = Logger('authLogger')
+  private readonly jwt: tokenWrapper
 
   public create(user: User): TokenInfo {
     const tokenData: TokenData = {
@@ -55,9 +49,9 @@ export class TokenService {
       return tokenData
     } catch (err) {
       if (err.name !== 'TokenExpiredError') {
-        this.authLogger.warn(err.message)
+        this.logger.warn(err.message)
       }
-      throw new HTTP400Error()
+      throw new HTTPErrors('Unauthorized', 400)
     }
   }
 }

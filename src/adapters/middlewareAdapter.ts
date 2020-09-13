@@ -1,36 +1,39 @@
 import { Application } from 'express'
-import { injectable, inject } from 'inversify'
 
-import { Config } from '../config'
+import { options } from '../config'
 import { registerMiddleware } from '../wrappers/'
 import { middleware } from '../middleware'
-import { BaseLogger } from './logger'
+import { Logger } from './logger'
+import { HTTPErrors } from './errors/errorAdapter'
 
-@injectable()
 class MiddlewareAdapter {
-  @inject(Config) private readonly config: Config
-  @inject(BaseLogger) private readonly appLogger = new BaseLogger(
-    'appLogger'
-  ).init()
-
-  configApplication = async (
-    application: Application
-  ): Promise<Application> => {
+  private readonly config = options
+  private readonly logger = Logger('appLogger')
+  public application: Application
+  constructor(application: Application) {
+    this.application = application
+  }
+  configApplication = async (): Promise<Application> => {
     try {
-      registerMiddleware(middleware, application)
-      application.listen(this.config.app_port, this.config.app_host, () => {
-        this.appLogger.info(
-          `Server Listening on http://${this.config.app_host}:${this.config.app_port}`
-        )
-      })
-      return application
+      registerMiddleware(middleware, this.application)
+      this.application.listen(
+        this.config.app_port,
+        this.config.app_host,
+        () => {
+          this.logger.info(
+            `Server Listening on http://${this.config.app_host}:${this.config.app_port}`
+          )
+        }
+      )
+      return this.application
     } catch (error) {
       if (this.config.node_environment === 'development') {
-        throw new Error(error.stack)
+        throw new HTTPErrors(error.stack, 500)
       }
-      throw new Error(error)
+      throw new HTTPErrors(error, 500)
     }
   }
 }
 
-export const middlewareAdapter = new MiddlewareAdapter()
+export const middlewareAdapter = (application: Application) =>
+  new MiddlewareAdapter(application)

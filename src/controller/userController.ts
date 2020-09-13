@@ -1,9 +1,13 @@
 import { getRepository } from 'typeorm'
 
 import { User, UserRepository, ICreateDTO } from '../entity'
-import { HTTP400Error } from '../adapters'
+import { HTTPErrors } from '../adapters'
+import { BaseController } from './baseController'
 
-class UserController {
+export class UserController extends BaseController {
+  public initializeRoutes(): string {
+    return (this.path = this.path)
+  }
   public execute = async ({
     ...params
   }: ICreateDTO): Promise<User | undefined> => {
@@ -11,7 +15,7 @@ class UserController {
       const repository = new UserRepository(getRepository(User))
       const isExists = await repository.findByEmail({ email: params.email })
       if (isExists) {
-        throw new HTTP400Error()
+        throw new HTTPErrors('Bad Request', 400)
       }
       const newUser = repository.instantiate(params)
       await repository.insert(newUser)
@@ -24,5 +28,3 @@ class UserController {
     }
   }
 }
-
-export default new UserController()

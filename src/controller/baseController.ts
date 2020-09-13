@@ -1,26 +1,23 @@
 import { AuthRequest } from '../types'
 import { AuthHandler } from '../router'
 import { isNullOrWhitespace } from '../utils/'
-import { DevError } from '../adapters'
+import { HTTPErrors } from '../adapters'
 import { Request, Response, NextFunction } from 'express'
-import { injectable, inject } from 'inversify'
 import { Validator } from 'class-validator'
 import { Router, AsyncRouter } from 'express-async-router'
 
-@injectable()
 export abstract class BaseController {
-  @inject(AuthHandler) private readonly authHandler: AuthHandler
+  private readonly authHandler: AuthHandler
 
-  public readonly path: string
+  public path: string
   public readonly router: Router
 
   public abstract initializeRoutes(): void
 
-  constructor(path: string = '', addAuth: boolean = true) {
+  constructor(path: string, addAuth: boolean = true) {
     if (isNullOrWhitespace(path)) {
-      throw new DevError(`Parameter 'path' can not be empty.`)
+      throw new HTTPErrors(`Parameter 'path' can not be empty.`, 400)
     }
-
     this.router = AsyncRouter()
     this.path = path
 

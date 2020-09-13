@@ -6,6 +6,7 @@ const registerRouter = (wrappers: RouterWrapper[], router: Router) => {
   for (const wrapper of wrappers) {
     wrapper(router)
   }
+  return router
 }
 
 export default registerRouter

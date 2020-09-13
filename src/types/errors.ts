@@ -1,1 +1,2 @@
-export type ErrorWithCode = Error & { code?: string }
+export type ErrorWithCode = Error & { code: number }
+export type DevError = Error & { debug: boolean }

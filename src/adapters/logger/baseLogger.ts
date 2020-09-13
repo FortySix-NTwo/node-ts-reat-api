@@ -1,13 +1,11 @@
 import winston from 'winston'
 import Sentry from 'winston-transport-sentry-node'
 import * as SentryNode from '@sentry/node'
-import { injectable, inject } from 'inversify'
 
-import { Config } from '../../config'
+import { options } from '../../config'
 
-@injectable()
-export class BaseLogger {
-  @inject(Config) private readonly config: Config
+class BaseLogger {
+  private readonly config = options
   public label: string
   private sentry() {
     SentryNode.init({
@@ -23,18 +21,22 @@ export class BaseLogger {
     this.sentry()
     const logger = winston.createLogger({
       format: winston.format.combine(
-        winston.format.prettyPrint(),
-        winston.format.simple(),
         winston.format.label({
           label: this.label,
           message: true,
         }),
+        winston.format.timestamp({
+          format: new Date().toLocaleDateString(),
+        }),
         winston.format.colorize({
           colors: {
             info: 'green',
+            warn: 'yellow',
             error: 'red',
+            http: 'blue',
           },
-        })
+        }),
+        winston.format.cli()
       ),
       transports: [
         new winston.transports.Console({ handleExceptions: true }),
@@ -49,3 +51,5 @@ export class BaseLogger {
     return logger
   }
 }
+
+export const Logger = (label: string) => new BaseLogger(label).init()

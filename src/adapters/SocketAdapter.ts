@@ -1,21 +1,17 @@
 import { Server } from 'http'
-import { injectable, inject } from 'inversify'
 import SocketIO from 'socket.io'
 import SocketRedisAdapter from 'socket.io-redis'
 import SocketIOWildcard from 'socketio-wildcard'
 import winston from 'winston'
 
 import { SocketController, SocketAuthorizationHandler } from '../controller'
-import { Config } from '../config'
-import { BaseLogger, CacheAdapter } from './index'
+import { options } from '../config'
+import { Logger, CacheAdapter } from './index'
 
-@injectable()
 export class SocketAdapter {
-  @inject(Config) private readonly config: Config
-  @inject(BaseLogger) private readonly socketLogger = new BaseLogger(
-    'socketLogger'
-  ).init()
-  @inject(CacheAdapter) private readonly client = new CacheAdapter().init()
+  private readonly config = options
+  private readonly logger = Logger('socketLogger')
+  private readonly client = new CacheAdapter().init()
   public server: Server
   protected path: string
   protected io: SocketIO.Server
@@ -28,15 +24,15 @@ export class SocketAdapter {
       this.path,
       this.config.ws_port,
       this.config.app_host,
-      this.socketLogger
+      this.logger
     )
-    this.socketLogger.debug('Socket service bound to Socket.io instance')
+    this.logger.debug('Socket service bound to Socket.io instance')
     if (!this.io) {
       throw new Error('Can not establish a connection')
     }
     this.io.use(SocketIOWildcard())
     if (this.client) {
-      this.socketLogger.debug(
+      this.logger.debug(
         'Socket service initializing Redis adapter for sticky sessions...'
       )
       this.io.adapter(
@@ -66,11 +62,11 @@ export class SocketAdapter {
 
   protected onConnect(socket: SocketIO.Socket) {
     const info = { id: socket.id } as any
-    this.socketLogger.silly('Socket client connected', info)
+    this.logger.silly('Socket client connected', info)
     socket.on('error', this.onError.bind(this, socket))
     socket.on('disconnect', this.onDisconnect.bind(this, socket))
     for (const listener of [SocketController] || []) {
-      this.socketLogger.silly(
+      this.logger.silly(
         `Biding socket client to "${listener.name}" listener`,
         info
       )
@@ -80,11 +76,11 @@ export class SocketAdapter {
 
   protected onDisconnect(socket: SocketIO.Socket) {
     const info = { id: socket.id } as any
-    this.socketLogger.silly('Socket client disconnected', info)
+    this.logger.silly('Socket client disconnected', info)
   }
 
   public async onError(error: Error): Promise<void> {
-    this.socketLogger.error(`Unknown socket error: ${error.message}`, error)
+    this.logger.error(`Unknown socket error: ${error.message}`, error)
   }
 
   public setAuthorizationHandler(handler: SocketAuthorizationHandler) {

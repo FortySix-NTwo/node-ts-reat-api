@@ -1,20 +1,16 @@
-import { PostgresConnectionOptions } from 'typeorm/driver/postgres/PostgresConnectionOptions'
-import { createConnection, Connection } from 'typeorm'
-import { injectable, inject } from 'inversify'
+import { createConnection, ConnectionOptions, Connection } from 'typeorm'
+import 'reflect-metadata'
 
 import { User } from '../entity'
-import { Config } from '../config'
-import { BaseLogger } from '../adapters'
+import { options } from '../config'
+import { Logger } from '../adapters'
 
-@injectable()
 export class ConnectionAdapter {
-  @inject(Config) private readonly config: Config
-  @inject(BaseLogger) private readonly DBLogger = new BaseLogger(
-    'DBLogger'
-  ).init()
+  private readonly config = options
+  private readonly logger = Logger('DBLogger')
   public connect = async (): Promise<Connection> => {
-    const configORM: PostgresConnectionOptions = {
-      type: this.config.typeorm_connection as 'postgres',
+    const configORM: ConnectionOptions = {
+      type: 'postgres',
       host: this.config.typeorm_host,
       port: this.config.typeorm_port,
       username: this.config.typeorm_user,
@@ -24,7 +20,7 @@ export class ConnectionAdapter {
       migrationsRun: this.config.typeorm_synchronize,
       synchronize: this.config.typeorm_synchronize,
       logging: this.config.typeorm_logging,
-      logger: this.config.typeorm_logger as 'file',
+      logger: 'file',
       migrations: [this.config.typeorm_migrations],
       cli: {
         migrationsDir: this.config.typeorm_migrations_dir,
@@ -32,9 +28,9 @@ export class ConnectionAdapter {
       },
     }
     try {
-      const db = await createConnection(configORM)
-      this.DBLogger.info(`Postgres database connected`)
-      return db
+      const ormDB = await createConnection(configORM)
+      this.logger.info(`Postgres database connected`)
+      return ormDB
     } catch (error) {
       throw new Error(error)
     }

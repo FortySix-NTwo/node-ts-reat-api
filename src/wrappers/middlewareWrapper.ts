@@ -9,6 +9,7 @@ const registerMiddleware = (
   for (const wrapper of wrappers) {
     wrapper(server)
   }
+  return server
 }
 
 export default registerMiddleware

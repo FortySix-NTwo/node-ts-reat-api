@@ -1,3 +1,2 @@
-export { Container } from './configContainer'
-export { Config } from './config'
+export { default as options } from './config'
 export { store } from './configUpload'

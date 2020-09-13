@@ -1,16 +1,14 @@
 import { Request, Response, NextFunction } from 'express'
-import { injectable, inject } from 'inversify'
 
-import { HTTP400Error, CacheAdapter } from '../../adapters'
+import { HTTPErrors, CacheAdapter } from '../../adapters'
 
-@injectable()
 export class CacheHandler {
-  @inject(CacheAdapter) private readonly cache = new CacheAdapter().init()
+  private readonly cache = new CacheAdapter().init()
   handleCaching = async (req: Request, res: Response, next: NextFunction) => {
     try {
       const key: string = req.params.key || req.body.key || req.query.key
       if (!key) {
-        throw new HTTP400Error('Empty search')
+        throw new HTTPErrors('Bad Request', 400)
       }
       const result = this.cache.get(key)
       if (!result) {

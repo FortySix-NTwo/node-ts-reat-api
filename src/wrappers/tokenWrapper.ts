@@ -1,9 +1,7 @@
-import { injectable } from 'inversify'
 import * as jwt from 'jsonwebtoken'
 
 import { Secret, SignOptions, VerifyOptions } from '../types'
 
-@injectable()
 class TokenWrapper {
   public async sign(
     payload: string | Buffer | object,
@@ -11,7 +9,8 @@ class TokenWrapper {
     signOptions?: SignOptions | undefined
   ): Promise<string | undefined> {
     if (signOptions) {
-      return jwt.sign(payload, secretOrPrivateKey, signOptions)
+      const options = signOptions as Object
+      return jwt.sign(payload, secretOrPrivateKey, options)
     }
     return jwt.sign(payload, secretOrPrivateKey)
   }
@@ -21,7 +20,11 @@ class TokenWrapper {
     secretOrPublicKey: Secret,
     verifyOptions?: VerifyOptions | undefined
   ): object | string {
-    return jwt.verify(token, secretOrPublicKey, verifyOptions)
+    if (verifyOptions) {
+      const options = verifyOptions as Object
+      return jwt.verify(token, secretOrPublicKey, options)
+    }
+    return jwt.verify(token, secretOrPublicKey)
   }
 }
 

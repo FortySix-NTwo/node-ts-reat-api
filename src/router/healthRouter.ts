@@ -1,6 +1,6 @@
 import { Request, Response, NextFunction } from 'express'
 
-import { HTTP400Error } from '../adapters'
+import { HTTPErrors } from '../adapters'
 import { CacheControl } from '../types'
 import { registerHeaders } from '../utils'
 
@@ -11,7 +11,7 @@ const healthRouter = async (
 ): Promise<any> => {
   try {
     if (!req) {
-      throw new HTTP400Error()
+      throw new HTTPErrors('Unauthorized', 400)
     }
     const { statusCode, statusMessage } = res
     return res
